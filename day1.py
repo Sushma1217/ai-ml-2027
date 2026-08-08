@@ -74,13 +74,13 @@ if(check_number %2 ==0): print("Its a even number")
 else: print("Its a odd number")
 
 #Find the larger of two numbers.
-def findLargerNumber(a,b):
+def find_larger_number(a,b):
  if(a>b):
     print("larger number is :",a)
  elif(a<b):
     print("larger number is :",b)
  else : print("both are equal")
-findLargerNumber(16,16)
+find_larger_number(16,16)
 #using ternary
 a=15
 b=15
@@ -88,7 +88,9 @@ larger_num = a if a>b else b
 print("larger_num", larger_num)
 
 #Find the largest of three numbers.
-number1=18;number2=18; number3=18
+number1=18
+number2=18
+number3=18
 
 if(number1>number2 and number1>number3) :
    print("larger_num", number1)
@@ -102,9 +104,9 @@ largest= max(number1,number2,number3)
 print("largest", largest)
 
 # Check if a person is eligible to vote.
-eligile_for_vote = 18
+eligible_for_vote = 18
 def voter_eligibility(age):
-    if(age>=eligile_for_vote):
+    if(age>=eligible_for_vote):
      print("You are eligible for vote!")
     else: print("You are not eligible for vote!")
 voter_eligibility(9)
@@ -132,7 +134,7 @@ def generate_grade(marks):
      print("Your grade is :",grade)
 generate_grade(82)
 
-def calculate_BMI():
+def calculate_bmi():
     # Convert string inputs to floats (height should be in meters, e.g., 1.75)
     height = float(input("Enter your height in meters (e.g., 1.75): "))
     weight = float(input("Enter your weight in kg (e.g., 70): "))
@@ -149,7 +151,7 @@ def calculate_BMI():
         print("Weight Category: Overweight")
     else:
         print("Weight Category: Obese")
-calculate_BMI()
+calculate_bmi()
 
 
 # Check whether a character is a vowel or consonant
@@ -173,14 +175,15 @@ check_vowels('b')
 
 # check_vowels('a')
 
+
 #  Check if a number is divisible by both 5 and 11.  
 
-def number_divisble(num):
+def number_divisible(num):
     if(num % 5==0 and num % 11==0 ):
         print("Yes. it is divisble by both 5 and 11")
     else: print("No. it is not divisble by both 5 and 11")
 
-number_divisble(110)
+number_divisible(110)
 
 # Mini Project
 # Student Result System
@@ -192,7 +195,6 @@ for mark in range(5):
     val = float(input(f"Enter your marks {mark+1}: "))
     marks.append(val)
 print(marks)
-
 total_marks = 500
 
 def calculate_results(): 
@@ -200,17 +202,17 @@ def calculate_results():
     has_failed_subject = False
     for mark in marks:
      total += mark
-    percentage = (total/total_marks)*100
-    if mark < 35:
-        has_failed_subject = True
+     percentage = (total/total_marks)*100
+     if mark < 35:
+            has_failed_subject = True
     # If any single subject is below 35, the student fails overall
-    if has_failed_subject:
+     if has_failed_subject:
         print("Result: Failed (scored below 35 in one or more subjects)")
-    elif percentage >= 85:
+     elif percentage >= 85:
         print("Your grade is 'A'")
-    elif percentage >= 60:
+     elif percentage >= 60:
         print("Your grade is 'B'")
-    elif percentage >= 35:
+     elif percentage >= 35:
         print("Your grade is 'C'")
 
     print("Your name is : ",student_name)
