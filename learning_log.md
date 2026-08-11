@@ -104,6 +104,8 @@ items are only dictonary method which means for one dataset like = {} 7. for lis
 ## Sets
 
 My understanding:
+List = collection of records
+Dictionary = one record
 
 ## Important mistakes
 
@@ -127,3 +129,58 @@ ex for set: to check the users visited page a, page b (uniqueness)
 ## Things I still don't understand
 
 need to work on list iternation
+
+# Python Day 4
+
+## List of dictionaries
+
+syntax issue
+My understanding:
+
+## Filtering data
+
+My understanding:
+in- for checking the data present
+
+## List comprehension
+
+My understanding:
+[x for x in numbers if x > 10]
+[result]
+for each item
+in collection
+if condition
+
+1.list comprehensions require the expression at the beginning, followed by the for loop, and then an optional if condition at the end.
+
+2.[val * 2 for val in numbers]
+3.we cant assign and write statement like print, break, continue in expression
+
+## Mutable vs immutable
+
+My understanding:
+
+## Important mistakes
+
+Count employees in each department
+
+## What took me time
+
+Count employees in each department
+solving practical question as im trying first without searching in google
+Which order has the highest amount - when two or more records has the same highest value
+implementing the difficult logic using list comprehension(syntax issue)
+
+## Interview questions
+
+What is list comprehension?
+What does mutable mean?
+List vs tuple?
+
+## AI/ML connection
+
+working on real data set like filtering, grouping etc based on the condition
+
+## Things I still don't understand
+
+NA
