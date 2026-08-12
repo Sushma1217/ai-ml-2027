@@ -112,7 +112,7 @@ print("five_nultiplier",five_nultiplier)
 # Get numbers > 20
 def filtered_numbers1():
   num_arr = []
-  for num in filtered_numbers:
+  for num in numbers:
     if num >20:
       num_arr.append(num)
   return num_arr
@@ -142,18 +142,18 @@ def five_numbers():
 print("five_numbers",five_numbers())
 
 orders = [
-  { "customer": "A", "product": "Laptop", "category": "Electronics", "amount": 75000 },
-  { "customer": "B", "product": "Smartphone", "category": "Electronics", "amount": 75000 },
-  { "customer": "C", "product": "Running Shoes", "category": "Footwear", "amount": 4500 },
-  { "customer": "D", "product": "Coffee Maker", "category": "Appliances", "amount": 6000 },
-  { "customer": "E", "product": "Desk Chair", "category": "Furniture", "amount": 12000 },
-  { "customer": "F", "product": "Wireless Mouse", "category": "Electronics", "amount": 1200 },
-  { "customer": "G", "product": "Backpack", "category": "Accessories", "amount": 8000 },
-  { "customer": "H", "product": "LED Monitor", "category": "Electronics", "amount": 14000 },
-  { "customer": "I", "product": "Bluetooth Speaker", "category": "Furniture", "amount": 6000 },
-  { "customer": "J", "product": "Yoga Mat", "category": "Fitness", "amount": 1200 },
-  { "customer": "K", "product": "Microwave Oven", "category": "Appliances", "amount": 9500 },
-  { "customer": "L", "product": "Smartwatch", "category": "Footwear", "amount": 8000 }
+    {"customer": "Asha", "product": "Laptop", "category": "Electronics", "amount": 75000},
+    {"customer": "Rahul", "product": "Phone", "category": "Electronics", "amount": 45000},
+    {"customer": "Asha", "product": "Headphones", "category": "Electronics", "amount": 5000},
+    {"customer": "Priya", "product": "Saree", "category": "Clothing", "amount": 8000},
+    {"customer": "Rahul", "product": "Shoes", "category": "Clothing", "amount": 6000},
+    {"customer": "Asha", "product": "Table", "category": "Furniture", "amount": 12000},
+    {"customer": "Vikram", "product": "Chair", "category": "Furniture", "amount": 7000},
+    {"customer": "Priya", "product": "Laptop", "category": "Electronics", "amount": 65000},
+    {"customer": "Rahul", "product": "Watch", "category": "Accessories", "amount": 10000},
+    {"customer": "Vikram", "product": "Phone", "category": "Electronics", "amount": 55000},
+    {"customer": "Priya", "product": "Bag", "category": "Accessories", "amount": 4000},
+    {"customer": "Asha", "product": "Shoes", "category": "Clothing", "amount": 5000},
 ]
 
 # What is the total revenue?

@@ -86,7 +86,7 @@ Important methods:
 ## Tuples
 
 Difference from list:
-imputable
+immutable
 
 ## Dictionaries
 
@@ -181,6 +181,37 @@ List vs tuple?
 
 working on real data set like filtering, grouping etc based on the condition
 
-## Things I still don't understand
+# Python Day 5
 
-NA
+## New concepts
+
+instead of assigning the first value to get the max number we can assign the 0 or none for its category and can compare
+
+## Problems I solved
+
+everything bit a small help in logic or syntax
+get_revenue_by_category
+get_highest_spending_customer
+get_department_salary
+
+## Problem I struggled with most
+
+get_revenue_by_category- syntax issue
+
+## My mistake
+
+string iternation intead of dynamic value check
+
+## How I fixed it
+
+google
+
+## AI/ML connection
+
+data grouping, decision making like highest, lowest etc
+
+## Interview questions
+
+iteration
+aggregation
+practice of key value in dict and list
