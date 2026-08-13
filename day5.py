@@ -94,12 +94,15 @@ employee_data = [
     {"ID": 107, "name": "Arjun Rao", "department": "Engineering", "role": "DevOps Engineer", "salary": 95000, "remote": True,"experience":9},
     {"ID": 108, "name": "Neha Verma", "department": "Finance", "role": "Financial Analyst", "salary": 50000, "remote": False,"experience":8}
 ]
-def get_department_salary():
+def get_department_salary_higest_paid_department():
     department_salary = {}
     for record in employee_data:
         department_name = record["department"]
         if department_name in department_salary:
             department_salary[department_name]+= record["salary"]
         else: department_salary[department_name] = record["salary"]
-    return department_salary
-print("get_department_salary",get_department_salary())
+       
+    highest_paid_amt=  max( max for max in department_salary.values())
+    highest_paid_department = [key for key, value in department_salary.items() if value==highest_paid_amt ]
+    return department_salary,highest_paid_department
+print("get_department_salary_higest_paid_department",get_department_salary_higest_paid_department())
