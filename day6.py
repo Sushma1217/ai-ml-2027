@@ -80,6 +80,7 @@ marks = np.array([
 # Number of students
 num_of_students = np.shape(marks)[0]
 print("num_of_students",num_of_students)
+# print("np.shape(marks)",np.shape(marks))-- my ref
 
 # Number of subjects
 num_of_subjects = np.shape(marks)[1]
