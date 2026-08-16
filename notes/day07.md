@@ -27,7 +27,7 @@ returns a tuple containing an array of indices, so [0] - gives the clean list
 ## argmax
 
 My understanding:
-return the indices val
+np.argmax() returns the index/position of the maximum value.
 
 ## What confused me
 
