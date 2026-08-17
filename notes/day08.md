@@ -52,7 +52,10 @@ syntax - df.sort_values(by='column_name')
 we have sort by index too - df.sort_index(axis=0)
 
 size - Counts rows (total number of elements/items, regardless of columns or missing data).count()
-Count()- valid values per column (excluding NaN / null values).
+Count()- non-null values per column (excluding NaN / null values).
+
+head()- first record, it defaults to returning the last 5 rows
+tail()- last records, it defaults to returning the last 5 rows
 
 ## What confused me
 
