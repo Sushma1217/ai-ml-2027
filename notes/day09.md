@@ -4,7 +4,8 @@
 
 in slicing -
 iloc[0:3]- gives row till 2(0,1,2)
-loc - gives 4 record which means it includes the end value also
+loc -
+loc[0:3] includes the row with label 3, whereas iloc[0:3] stops before position 3
 
 loc[row_indexer, column_indexer]
 
@@ -20,7 +21,8 @@ ans- group the data based on department and take its avg salary
 
 ## agg()
 
-used to apply one or more maths ops like mean, median, min, max etc to dataframe
+agg() applies one or more aggregation functions like mean, median, min, maxto data, often after groupby().
+
 mostly paired with groupby
 
 ## What confused me
