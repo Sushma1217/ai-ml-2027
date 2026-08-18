@@ -90,11 +90,11 @@ print("Duplicate_values",df1.duplicated().sum())
 # Decide how to handle missing values
 # mean for age
 # median for salary- coz of the outliers 
-df1["age"].fillna(df1["age"].mean())
-df1["salary"].fillna(df1["salary"].median())
+df1 = df1["age"].fillna(df1["age"].mean())
+df1 = df1["salary"].fillna(df1["salary"].median())
 
 # Remove duplicates if appropriate
-df1.drop_duplicates()
+df1 = df1.drop_duplicates()
 
 # Age:
 # → filled missing values using median
@@ -104,12 +104,15 @@ df1.drop_duplicates()
 # Salary:
 # → filled using median
 # → because...
-#  it can be of any numbers, outliers would be possible so filled with median, a mid point of values
+#  it can be of any numbers, outliers would be possible so filled with median, 
+# Median is the middle value after the data is sorted. It is less affected by extreme values than the mean.
+
+# Mean vs median → depends on the distribution, not the number of digits.
 
 # Duplicates:
 # → removed
 # → because...
-# eleminates duplication row, ideal for decision making
+# I should remove duplicates only after confirming that they represent duplicate records rather than legitimate repeated events.
 
 # 500000 salary:
 # → investigated rather than automatically removed
