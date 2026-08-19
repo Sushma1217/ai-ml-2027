@@ -71,6 +71,7 @@ fillna()- filling with some values like mean, median, mode etc
 Mean vs median for missing-value imputation
 mean- for normal distribution with without outliers
 median - for skewed data or datasets containing extreme outliers
+Mean vs median → depends on the distribution, not the number of digits.
 
 Why can't we blindly remove duplicates?
 can break ops sys, destroy valid historical data, erase critical data
