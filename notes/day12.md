@@ -27,6 +27,8 @@
 
 all columns other than tenure, monthly charges, total charges
 
+A column's data type and its meaning are not always the same thing.
+
 find the unique values
 
 Contract:
