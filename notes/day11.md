@@ -8,7 +8,7 @@ convert column from one data type to another
 
 ## pd.to_numeric()
 
-converts value into numeric data type.
+attempts to convert values to numeric types. Because conversion can fail. and with error="coerce" failed conversions become missing values.
 pd.to_numeric(arg, errors='raise', downcast=None)
 arg- dataframe number
 errors- how invalid or unparseable data is handled
@@ -38,7 +38,7 @@ replace()- replaces specific values across a full DataFrame or a targeted column
 making the value uniform like converting to upper, lower etc
 .str- makes whole column as string so we can apply upper, lower
 
-strip()- removes a speci char if params is provided else wll whitespaces and new lines will be removed.
+strip()- removes a speci char if params is provided else removes leading and trailing whitespace and new lines will be removed.
 
 ## What confused me
 
@@ -69,8 +69,10 @@ Check final data
 
 ## Decisions I made
 
-replacing na value of age with mean
+replacing na value of age with mean- I chose mean because the age values don't contain an obvious extreme outlier; in a real dataset I'd inspect the distribution before choosing mean vs median.
 Int64- for converting age with unknown val
+int64 → normal integer, cannot represent NaN
+Int64 → Pandas nullable integer, can represent missing values
 
 ## Interview questions
 
@@ -84,8 +86,15 @@ What does .unique() do?
 What does .value_counts() do?
 
 What is the difference between "cleaning data" and "transforming data"?
-cleaning the data - finding missing value, dropping duplicates, checking for outliers - so the dataset is ready to transform
-transforming- converting data into meaningful. it can be checking for datatype, string ops, cleaning up categorical data etc
+cleaning the data - Fixing problems in the data.
+missing values
+duplicates
+invalid values
+inconsistent categories
+wrong data types
+
+transforming- Changing data into a form that is more useful for analysis/modeling.
+Changing data into a form that is more useful for analysis/modeling.
 
 <!-- MCP -->
 
