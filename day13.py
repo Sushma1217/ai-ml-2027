@@ -45,3 +45,5 @@
 # Should customerID be used as an ML feature?
 # no, i guess this is the unique id to represent the customers and useful to interpret the results like which user churn, 
 # did not churn, who are senior citizen etc plays a label role
+# refined 
+# customerID can indeed be useful after prediction to identify which customer the prediction belongs to.
