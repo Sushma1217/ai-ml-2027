@@ -66,6 +66,11 @@ Conclusion:
 
 ## What I learned about interpreting graphs
 
+identifying the trend.
+may be drawing the conclusion by looking at the values
+
 ## What still confuses me
+
+identifying rates. drawing better conclusion
 
 ## AI/ML connection
