@@ -41,6 +41,28 @@ PhoneService,MultipleLines,OnlineBackup,OnlineSecurity etc
 PaperlessBilling, StreamingMovies, TechSupport,DeviceProtection
 PhoneService,MultipleLines,OnlineBackup,OnlineSecurity, SeniorCitizen,Dependents,Partner
 
+correct ans:
+These should not automatically be excluded.
+
+The main column we should exclude from model features is:
+
+customerID
+
+Why?
+
+Because it is just an identifier.
+
+The other columns may actually contain useful information for predicting churn. For example:
+
+TechSupport = No
+
+might have a relationship with churn. The model should get the opportunity to learn that.
+
+So remember:
+
+Categorical ≠ useless.
+Identifier ≠ predictive feature.
+
 ### Missing/invalid data
 
 total charges - type is obj or str
@@ -64,7 +86,9 @@ adjust the numerical values to share a common scale
 
 ### Why do we need it?
 
-to the larger numbers wont dominant, extreme values can be handled nicely
+To put numerical features on comparable scales so that features with large numeric ranges don't disproportionately influence algorithms that are sensitive to feature magnitude.
+
+Outliers are a separate problem. In fact, some scaling methods can themselves be affected by outliers.
 
 ## Feature classification
 
