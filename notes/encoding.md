@@ -41,6 +41,20 @@ One year
 Two year
 
 ordinal- as month to month< One year < Two year
+correct ans:
+🟡 One important correction: Contract
+
+You classified:
+
+Month-to-month < One year < Two year → ordinal
+
+This is the one I want you to change.
+
+For ML purposes, Contract should generally be treated as nominal, not ordinal.
+
+Why?
+
+Although there is a duration difference, the categories aren't simply levels of a single ordered quantity in the way:
 
 ### T-shirt size
 
@@ -69,6 +83,8 @@ each category gets its own col.
 pd.get_dummies()
 it doesnt modify the orginal df
 returns bool(true'false) matrix
+
+pd.get_dummies() doesn't know whether a category is nominal or ordinal. It simply treats categorical values as categories.
 
 ## Practical implementation
 
@@ -121,6 +137,8 @@ it will reduce the redundancy or reduce the burdern
 
 If you keep all the columns, you create a mathematical loop where one column can be perfectly predicted by the others.Let's look at the car example again (Red, Green, Blue):If you know a car is not Green (0) and not Red (0), it must be Blue (1).Because Green + Red + Blue = 1 always, the columns are perfectly tied together.
 
+If one category can be determined from the other categories, we don't need to retain all of them.
+
 ### Q6
 
 What is the difference between nominal and ordinal data?
@@ -131,7 +149,28 @@ ordinal - has orders ex: grades
 
 the output and types of the df after encoding and still not clear
 my question - we applied get_dummies() to all the columns of data, what if it has ordinal data??
-i know get_dummies will ignore the numerical col
+i know get_dummies will ignore the numerical col.
+
+pd.get_dummies() doesn't know whether a category is nominal or ordinal. It simply treats categorical values as categories.
+
+So:
+
+S
+M
+L
+XL
+
+would become separate columns if you use one-hot encoding.
+
+That's not wrong—one-hot encoding can still work for ordinal variables—but it throws away the ordering information.
+
+For a genuinely ordinal feature, we might instead explicitly encode:
+
+Low → 1
+Medium → 2
+High → 3
+
+because the order carries information.
 
 ## What became clearer
 
