@@ -42,6 +42,8 @@ print("split_salary_data_mean",split_salary_data_mean)
 # Which mean should a real ML model be allowed to know during training?
 # the splitted mean or trained mean so it will work well for future data as well instead of memorizing
 
+# correct ans:
+# The preprocessing parameters must be learned only from the training data so that information from the test data doesn't influence the model-building process.
 # Part 4 — The same idea with an encoder
 
 # Think about this situation:

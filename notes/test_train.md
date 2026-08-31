@@ -60,7 +60,7 @@ Data Leakage- Accidental sharing of test information (like means, maxes, or futu
 ## Interview Questions
 
 What is train/test split?
-splitting the data into train and test so we can train the model and make it fit for future data also
+training and testing on the same data leads to memorization rather than true learning
 
 Why shouldn't we evaluate a model on its training data?
 may be it will set a min, max value or some range so fails to handle the future data
@@ -69,7 +69,9 @@ What does random_state do?
 it will make the random split to be same at each time of model run.
 
 What is data leakage?
-train and test data, if we train the model in entire data it will not handle the future or unseen data and leaks min, max etc which will leads to model fail for future data
+Data leakage occurs when information that would not legitimately be available when making a prediction becomes available to the model during training.
+
+For our current example, if we calculate the scaler's mean/std using both train and test data, the test set has influenced the training process. That's leakage—even though we never directly put the test labels into the model.
 
 ## What confused me
 
