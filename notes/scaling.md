@@ -19,12 +19,16 @@ normalizing the values or managing the numerical values into a normal range with
 google ans
 a data preprocessing technique used in machine learning to adjust the numerical values of different variables (features) to a common, comparable range.
 
+Scaling puts numerical features onto a comparable numerical scale.
+
 Why do we scale features?
 Improves Accuracy
 for better computaion
 
 What does fit() do?
 it learn or calculates the parameters in data
+
+We don't fit() again on X_test. once we had put that in train data so for test data directly transform()
 
 What does transform() do?
 odifies the data using previously learned parameters.
