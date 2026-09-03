@@ -17,20 +17,22 @@ rest all(seniorcitizen is binary)
 My understanding:
 a tool which applies to the data preprocessing to seperate the columns.
 instead of treating every column in the same way it will seperate numerical,categorical
-automatically reads and seperates ans transforms the column
+
+One small refinement: it doesn't necessarily "automatically" identify the columns. We specify which columns belong to which transformer, and ColumnTransformer applies the appropriate transformation. Your code does that with numerical_columns and categorical_columns
 
 Like applying scaler to numerical, encoder to cat helps in data leakage
 
 ## OneHotEncoder
 
 My understanding:
-a tool applied to encode the categorical columns which do not follow any order.
+a tool applied to encode the categorical columns.
 encode means covnerts categorical columns values ito numerical values 1/0 and each value have its own matrix
 
 ## handle_unknown
 
-handles the new values of the data the encoder didnt encounter during fitting, ex: suppose if any new values added to types of contract it will avoid crashing.
+handles the new values of the data the encoder didnt encounter during fitting,
 
+It means that if the transformer encounters a category during transformation that wasn't present when it was fitted, it won't throw an error.
 My understanding:
 
 ## Fit vs Transform
@@ -54,7 +56,7 @@ Number of columns have increased because the coulmn transfer tool has performed 
 
 ## Pipeline
 
-A Machine Learning (ML) pipeline is an automated, end-to-end workflow that connects every stage of the machine learning lifecycle—from raw data collection to model deployment and monitoring.
+An sklearn Pipeline chains preprocessing steps and a model into a single reproducible workflow.
 
 Imagine your project has:
 
@@ -74,10 +76,14 @@ A pipeline packages the process into one reproducible workflow.
 ## Interview questions
 
 What is ColumnTransformer?
-A tool in data preprocessing that trasnforms the data by divdies the columns into numerical and categorical and applies feature scaling or encoding automatically eliminating manual work.
+A tool in data preprocessing that trasnforms the data by divdies the columns into numerical and categorical and applies feature scaling or encoding eliminating manual work.
+it doesn't necessarily "automatically" identify the columns. We specify which columns belong to which transformer, and ColumnTransformer applies the appropriate transformation. Your code does that with numerical_columns and categorical_columns
 
 Why can't we use the same preprocessing for numerical and categorical features?
 because machine can understand only the numerical values and it helps in smooth processing
+
+better explanation
+Numerical and categorical features have different representations and therefore require different preprocessing techniques.
 
 What is the purpose of handle_unknown="ignore"?
 it will help in handling unknown vlaues that model is not aware during fit and helps in

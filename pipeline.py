@@ -84,7 +84,7 @@ print("X_test_processed", X_test_processed.shape)
 Pipeline = Pipeline([("preprocessing",preprocessor)])
 
 X_train_processed = Pipeline.fit_transform(X_train)
-X_test_processed = Pipeline.fit_transform(X_test)
+X_test_processed = Pipeline.transform(X_test)
 
 print("X_train_processed ", X_train_processed.shape)
 print("X_test_processed ", X_test_processed.shape)
