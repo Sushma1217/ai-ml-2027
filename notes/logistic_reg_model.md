@@ -26,8 +26,13 @@ stages
 
 ## What does fit() do?
 
-fit is learning the parameters or values for example min, max or avergare from feature tain data(X_train).
-may be applies the learnt params in Y train and analyse
+Scaler .fit()
+
+Learns things such as mean and standard deviation from training features.
+
+LogisticRegression .fit()
+
+Learns model parameters/weights from training features and target values.
 
 ## What does predict() do?
 
@@ -42,7 +47,6 @@ What did I observe?
 My understanding:
 tells us how accurate the prediction is
 78% is the accurance of test data
-around 4 values got mismatched
 
 ## Train vs Test Accuracy
 
@@ -77,7 +81,14 @@ because this is the best choice as it will classify among two choices
 Q3
 
 What does .fit() do?
-analyses and learns the parameters in train data like min, max
+
+Scaler .fit()
+
+Learns things such as mean and standard deviation from training features.
+
+LogisticRegression .fit()
+
+Learns model parameters/weights from training features and target values.
 
 Q4
 
@@ -97,11 +108,14 @@ how well the model can perform, predict and give the accurate results
 Q7
 
 Why can accuracy be misleading for an imbalanced dataset?
-accuracy might be dominated by the few categories or numbers values, not a normal range scale.
+Accuracy can look high simply because the majority class is large, while the model performs poorly on the minority class we may actually care about.
 
 Q8
 What is overfitting?
 a condition where the accuracy of the model is more in traing as compared to the test data
+
+better ans:
+Overfitting occurs when a model learns the training data too closely, including patterns/noise that don't generalize well to unseen data.
 
 ## What confused me
 
