@@ -9,6 +9,8 @@ A real ML model isn't judged by one number. We need to understand different type
 My understanding:
 F1 score combines precision and recall into a single metric.
 
+F1 is the harmonic mean of precision and recall.
+
 ## Precision vs Recall
 
 Model A:
