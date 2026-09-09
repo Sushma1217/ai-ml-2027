@@ -133,11 +133,12 @@ precision decreases means the model is making false alarms, larger share of its 
 
 # What is a model parameter?
 
-the values which model learns during training or fitting for examples min, std, max etc
+the values which model learns during training or fitting for examples weights / coefficients
+intercept
 
 # What is a hyperparameter?
 
-something we choose before or during training. for example max iteration, handle_unknown="ignore"
+something we choose before or during training. for example C max_iter class_weight
 
 # Give an example of each for Logistic Regression.
 

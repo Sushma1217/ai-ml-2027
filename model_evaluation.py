@@ -111,7 +111,7 @@ print("classification_report", classification_report(y_test,y_pred))
 # 118
 
 # Which error would be more expensive for a telecom company?
-# recall because its about of all churn customer how many the model was able to predict, so the missed 
+# False Negative (FN) — an actual churner that the model predicted as non-churner., so the missed 
 # count of customer is a loss of revenue for the company as they lost them
 
 
@@ -131,7 +131,7 @@ print("classification_report", classification_report(y_test,y_pred))
 # 2 × (Precision × Recall)
 # ------------------------
 #  Precision + Recall
-# 2*(.61 *.51)/.61+.51 = 0.5098
+# 2*(.61 *.51)/.61+.51 = 0.56
 
 # Part 4 — Check class distribution
 print(y.value_counts())
@@ -164,7 +164,7 @@ print(y.value_counts(normalize=True))
 
 # print("classification_report", classification_report(y_test,y_pred))
 
-2*(.61 *.51)/.61+.51 = 0.5098
+# 2*(.61 *.51)/.61+.51 = 0.5098
 
 #                  Original     Balanced
 # Accuracy          78              73.13
