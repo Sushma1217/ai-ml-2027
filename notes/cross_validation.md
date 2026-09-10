@@ -6,7 +6,7 @@ A single train/test split can give us one estimate of model performance. Cross-v
 
 ## Why isn't one train/test split enough?
 
-yes because data is imbalanced so sometimes only one class can be divided in the split
+Different random splits can contain different combinations of customers, so model performance can vary depending on which observations happen to land in training vs validation/test.
 
 ## What is Cross Validation?
 
@@ -65,7 +65,7 @@ means the partition is 5 times and in each iteration validation is performed for
 
 # Why do we perform cross-validation on training data?
 
-we must always use train data during the fit and validation as using test data can make model lazy, it might memorize the params which leads to data leakage.
+If we repeatedly use the test set to make modelling decisions, we indirectly optimize for that test set. It is no longer an unbiased estimate of how the final model will perform on truly unseen data
 
 # Why should the test set remain untouched until final evaluation?
 

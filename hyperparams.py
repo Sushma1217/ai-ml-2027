@@ -10,6 +10,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import f1_score
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import make_scorer, precision_score, recall_score
+from sklearn.model_selection import GridSearchCV
 
 # load data
 df = pd.read_csv("data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
@@ -83,89 +84,76 @@ print("classification_report", classification_report(y_test,y_pred))
 print(y.value_counts())
 
 print(y.value_counts(normalize=True))
-
- # 🔴🔴🔴🔴🔴🔴🔴🔴  # 🔴🔴🔴🔴🔴🔴🔴🔴   # 🔴🔴🔴🔴🔴🔴🔴🔴  cross validation
-
-
-# 1. Define a custom scorer that sets pos_label='Yes'
 f1_yes_scorer = make_scorer(f1_score, pos_label="Yes")
 
-f1__scores = cross_val_score(
-    model_pipeline,
-    X_train,
-    y_train,
-    cv=5,
-    scoring=f1_yes_scorer
-)
-print("f1__scores",f1__scores)
-print("f1__scores", f1__scores.mean())
-print("f1__scores", f1__scores.std())
+ # 🔴🔴🔴🔴🔴🔴🔴🔴   # 🔴🔴🔴🔴🔴🔴🔴🔴   # 🔴🔴🔴🔴🔴🔴🔴🔴   # 🔴🔴🔴🔴🔴🔴🔴🔴 
+ # 🔴🔴🔴🔴🔴🔴🔴🔴 hyperparameters
 
-# Part 6 — Compare metrics
-# accuracy
-scores_accuracy = cross_val_score(model_pipeline,
-    X_train,
-    y_train,
-    cv=5,
-    scoring="accuracy")
-print("scores_accuracy",scores_accuracy.mean())
-print("scores_accuracy",scores_accuracy.std())
+param_grid = {"model__C":[0.01, 0.1, 1, 10, 100]} #two underscores Because your Logistic Regression is inside your Pipeline:
 
-# precision
-precision_yes_scorer = make_scorer(precision_score, pos_label="Yes")
-scores_precision = cross_val_score(model_pipeline,
-    X_train,
-    y_train,
-    cv=5,
-    scoring=precision_yes_scorer)
-print("scores_precision",scores_precision.mean())
-print("scores_precision",scores_precision.std())
+gird_search = GridSearchCV(model_pipeline,param_grid=param_grid,cv=5,scoring=f1_yes_scorer)
 
-# recall
-recall_yes_scorer = make_scorer(recall_score, pos_label="Yes")
-scores_recall = cross_val_score(model_pipeline,
-    X_train,
-    y_train,
-    cv=5,
-    scoring=recall_yes_scorer)
-print("scores_recall",scores_recall.mean())
-print("scores_recall",scores_recall.std())
+gird_search.fit(X_train,y_train)
+
+print("grid_search.best_params_",gird_search.best_params_)  #{'model__C': 0.1}
+print("grid_search.best_score_",gird_search.best_score_)  #0.63
 
 
-# Part 7 — Look at consistency
+# 🔴 Part 5 — Understand what just happened
+# This is the most important part.
 
-# Don't only calculate the mean.
+# Suppose sklearn says:
 
-# Also calculate:
+# Best C = 10
+# Best CV F1 = 0.64
 
-# scores.std()
-# Why?
+# It essentially tested:
 
-# Suppose:
+# C=0.01 → CV
+# C=0.1  → CV
+# C=1    → CV
+# C=10   → CV ⭐
+# C=100  → CV
 
-# Model A:
-# 0.69
-# 0.70
-# 0.71
-# 0.70
-# 0.69
+# And each candidate itself goes through the 5-fold CV process.
 
-# versus:
+# So you're not simply:
 
-# Model B:
-# 0.50
-# 0.85
-# 0.62
-# 0.79
-# 0.55
+# "Trying five values."
 
-# Both might have a similar average.
+# You're doing:
 
-# But which one would make you more comfortable putting into production?
+# five hyperparameter choices × five validation folds.
 
-# 🔴 Explain why.
+# That's 25 model evaluations.
 
-# This is the beginning of model stability/reliability thinking.
-# ans: i would make model A because the difference of the vlaues are minimal which shows model is more or
-# less working in same way
+# You don't need to manually calculate this; just understand what's happening.
 
+# 🟢 Part 6 — Evaluate on the actual test set
+best_model = gird_search.best_estimator_
+y_pred_ = best_model.predict(X_test)
+
+cm = confusion_matrix(y_test, y_pred_)
+print(cm)
+
+print("classification_report", classification_report(y_test,y_pred_))
+
+# 🔴 Compare against your previous model.
+
+# Create:
+
+# Metric	Before tuning	After tuning
+# Accuracy		     .73          .74
+# Precision	            .5        .5	
+# Recall		       .79         .79
+# F1		             .61       .61
+
+
+# inspect all results
+# print("gird_search.cv_results_", gird_search.cv_results_)
+
+# Convert the relevant pieces into a DataFrame:
+results = pd.DataFrame(gird_search.cv_results_)
+print("results", results)
+
+#   0.632592 mean_test_score,  rank_test_score - 1, {'model__C': 0.1} 
