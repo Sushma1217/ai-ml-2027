@@ -23,6 +23,14 @@ google ans:
 it is the penalty setting for making mistakes.
 machine learning model is allowed to fit the training data perfectly without any penalties, it will cheat. It will memorize every single quirk, noise, and rare exception in your dataset
 
+right ans:
+C controls the strength of regularization in Logistic Regression.
+
+And importantly:
+
+Smaller C → stronger regularization
+Larger C → weaker regularization
+
 My prediction before tuning
 
 What is GridSearchCV?
@@ -44,13 +52,21 @@ What is hyperparameter tuning?
 it is the external configuration setting that we do suring training to control how model learning process work.
 
 What is the difference between a parameter and hyperparameter?
-parameters is something the model learns during the training. ex std, mean
+parameters is something the model learns during the training. ex in logistic reg coefficients/weights
+→ intercept
 
 hyperparameters is the external setting or specification we provide during training to control model work.
 ex: class weight, max iteration
 
 What is C in Logistic Regression?
 it is the penalty that we give for model means the rules we keep for model to not to overperform or underperform
+right ans:
+C controls the strength of regularization in Logistic Regression.
+
+And importantly:
+
+Smaller C → stronger regularization
+Larger C → weaker regularization
 
 What confused me
 C, the flow of ml model, that day we added pipeline which was ok for understanding now we are just adding one by one like cv, hyperparams and finding accuracy, precision etc.. what are we doing exactly??? whats the flow???
@@ -65,7 +81,7 @@ What does model\_\_C mean?
 a tuning parameters
 
 Why shouldn't we tune using the test set?
-because model may become lazy and may not works better for unseen data because there is a chances of learning params duing fit
+If we repeatedly use the test set to make modelling decisions, we start indirectly optimizing for that test set. It is no longer a truly unseen/unbiased final evaluation.
 
 What is best*params*?
 an attribute that returns optimal combo of hyperparams found during an automated search.
