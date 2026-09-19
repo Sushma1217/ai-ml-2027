@@ -111,15 +111,50 @@ y_prob = best_model.predict_proba(X_test)[:,1]
 print("y_prob",y_prob[:20])
 
 # Then investigate the relationship between: y_prob and y_test
-# y_prob is about what the model thinks will happen ex: .82 means 82% sure about the chances of churning
-# y_test - is what actually happened in real life
+
 
 probability_analysis = pd.DataFrame({
     "actual": y_test.values,
     "probability":y_prob
 })
-print(probability_analysis.head(10))
 
+
+# Convert probability to prediction for each threshold
 probability_analysis["prediction_05"] = (probability_analysis["probability"]>=.5)
+
+
+
+# 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢 threshold🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+
+# Use the y_prob you already generated.Evaluate these three thresholds: 0.50, 0.40 0.30
+# for .40
+probability_analysis["prediction_04"] = (probability_analysis["probability"]>=.4)
+
+# for .30
+probability_analysis["prediction_03"] = (probability_analysis["probability"]>=.3)
+
 print(probability_analysis.head(10))
 
+
+# Calculate: Precision, Recall, F1, Put the results into a small DataFrame.
+# Convert actual labels: No -> 0, Yes -> 1
+y_test_binary = (y_test == "Yes").astype(int)
+thresholds = [0.50, 0.40, 0.30]
+results = []
+
+
+for threshold in thresholds:
+    prediction = (y_prob >= threshold).astype(int)
+    results.append({
+        "threshold": threshold,
+        "precision": precision_score(y_test_binary, prediction, zero_division=0),
+        "recall": recall_score(y_test_binary, prediction, zero_division=0),
+        "f1": f1_score(y_test_binary, prediction, zero_division=0),
+        "cm": confusion_matrix(y_test_binary,prediction)
+    })
+
+threshold_results = pd.DataFrame(results)
+print(threshold_results)
+
+# Print the confusion matrix for each threshold.
+# refer the above method
