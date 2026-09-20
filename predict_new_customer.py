@@ -1,0 +1,243 @@
+import pandas as pd
+from  sklearn.model_selection  import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import f1_score
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import make_scorer, precision_score, recall_score
+from sklearn.model_selection import GridSearchCV
+
+# load data
+df = pd.read_csv("data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+df["TotalCharges"] = pd.to_numeric(df["TotalCharges"],errors="coerce")
+
+df = df.dropna()
+df= df.drop(columns="customerID")
+
+# identify and segregating the column
+numerical_columns = ["MonthlyCharges","TotalCharges","tenure"]
+categorical_columns = ["gender","Partner","Dependents","PhoneService","MultipleLines","InternetService","OnlineSecurity","OnlineBackup","DeviceProtection","TechSupport",
+                       "StreamingTV","StreamingMovies","Contract","PaperlessBilling","PaymentMethod","SeniorCitizen"]
+
+# Separate features and target
+X= df.drop(columns="Churn")
+y= df["Churn"]
+
+# train, test and split
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=.2, random_state=42)
+
+# Preprocessing
+# create the transoformers
+numeric_transformer = StandardScaler()
+categorical_transformer = OneHotEncoder(handle_unknown="ignore",drop="first")
+
+# Part 5 — Create the ColumnTransformer
+preprocessor = ColumnTransformer(transformers=[("num",numeric_transformer,numerical_columns),("cat",categorical_transformer,categorical_columns)])
+
+
+model = LogisticRegression(max_iter=1000, class_weight="balanced")
+
+
+# Part 3 — Put preprocessing + model together ⭐
+model_pipeline = Pipeline([("processing",preprocessor),("model",model)])
+
+# Part 4 — Train the model
+model_pipeline.fit(X_train,y_train)
+
+# Part 5 — Make predictions
+y_pred = model_pipeline.predict(X_test)
+
+
+# Part 7 — Your first metric: Accuracy
+accuracy = accuracy_score(y_test, y_pred)
+accuracy_percentage = round(accuracy*100,2)
+print("accuracy_percentage,",accuracy_percentage) 
+
+# Part 8 — Check the model's training accuracy too
+train_pred = model_pipeline.predict(X_train)
+train_accuracy = accuracy_score(y_train,train_pred)
+train_accuracy_percentage = round(train_accuracy*100,2)
+
+print("accuracy_percentage,",accuracy_percentage)  #78.68
+print("train_accuracy_percentage,",train_accuracy_percentage) #80.91
+
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+
+print("classification_report", classification_report(y_test,y_pred))
+
+# Part 4 — Check class distribution
+print(y.value_counts())
+
+print(y.value_counts(normalize=True))
+f1_yes_scorer = make_scorer(f1_score, pos_label="Yes")
+
+ # 🔴🔴🔴🔴🔴🔴🔴🔴 hyperparameters
+
+param_grid = {"model__C":[0.01, 0.1, 1, 10, 100]} #two underscores Because your Logistic Regression is inside your Pipeline:
+
+gird_search = GridSearchCV(model_pipeline,param_grid=param_grid,cv=5,scoring=f1_yes_scorer)
+
+gird_search.fit(X_train,y_train)
+
+print("grid_search.best_params_",gird_search.best_params_)  #{'model__C': 0.1}
+print("grid_search.best_score_",gird_search.best_score_)  #0.63
+
+
+# 🟢 Part 6 — Evaluate on the actual test set
+best_model = gird_search.best_estimator_
+y_pred_ = best_model.predict(X_test)
+
+
+cm = confusion_matrix(y_test, y_pred_)
+print(cm)
+
+print("classification_report", classification_report(y_test,y_pred_))
+
+
+# Convert the relevant pieces into a DataFrame:
+results = pd.DataFrame(gird_search.cv_results_)
+print("results", results)
+
+#   0.632592 mean_test_score,  rank_test_score - 1, {'model__C': 0.1} 
+
+# Get probability predictions:  🔴🔴🔴🔴🔴🔴🔴🔴 🔴🔴🔴🔴🔴🔴🔴🔴 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
+y_prob = best_model.predict_proba(X_test)[:,1]
+
+print("y_prob",y_prob[:20])
+
+# Then investigate the relationship between: y_prob and y_test
+
+
+probability_analysis = pd.DataFrame({
+    "actual": y_test.values,
+    "probability":y_prob
+})
+
+
+# Convert probability to prediction for each threshold
+probability_analysis["prediction_05"] = (probability_analysis["probability"]>=.5)
+
+
+
+# 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢 threshold🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+
+# Use the y_prob you already generated.Evaluate these three thresholds: 0.50, 0.40 0.30
+# for .40
+probability_analysis["prediction_04"] = (probability_analysis["probability"]>=.4)
+
+# for .30
+probability_analysis["prediction_03"] = (probability_analysis["probability"]>=.3)
+
+print(probability_analysis.head(10))
+
+
+# Calculate: Precision, Recall, F1, Put the results into a small DataFrame.
+# Convert actual labels: No -> 0, Yes -> 1
+y_test_binary = (y_test == "Yes").astype(int)
+thresholds = [0.50, 0.40, 0.30]
+results = []
+
+
+for threshold in thresholds:
+    prediction = (y_prob >= threshold).astype(int)
+    results.append({
+        "threshold": threshold,
+        "precision": precision_score(y_test_binary, prediction, zero_division=0),
+        "recall": recall_score(y_test_binary, prediction, zero_division=0),
+        "f1": f1_score(y_test_binary, prediction, zero_division=0),
+        "cm": confusion_matrix(y_test_binary,prediction)
+    })
+
+threshold_results = pd.DataFrame(results)
+print(threshold_results)
+
+
+# 🟢🟢🟢🟢🟢🟢🟢🟢 model_interpretation 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+# Get the preprocessing step:
+preprocessor = best_model.named_steps["processing"]
+
+# Get the model:
+model = best_model.named_steps["model"]
+
+# Get the transformed feature names from the preprocessor.
+feature_names = preprocessor.get_feature_names_out()
+
+# Inspect the transformed feature names
+# print("tranformed feature names length",len(feature_names))
+# print("first ten record",feature_names[:10])
+
+# Get the Logistic Regression coefficients:
+model.coef_[0]
+
+# Create a DataFrame containing: feature, coefficient
+feature_coef_data = pd.DataFrame({
+    "feature_names":feature_names,
+    "coefficient": model.coef_[0]
+})
+# Sort it by coefficient.
+sorted_feature_coef_data = feature_coef_data.sort_values(by='coefficient', ascending=False)
+
+# 🟢🟢🟢🟢🟢🟢🟢🟢 predicting new customer 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢
+
+new_customer = pd.DataFrame({'gender': ['Female'],
+    'SeniorCitizen': [0],
+    'Partner': ['Yes'],
+    'Dependents': ['No'],
+    'tenure': [1],
+    'PhoneService': ['No'],
+    'MultipleLines': ['No phone service'],
+    'InternetService': ['DSL'],
+    'OnlineSecurity': ['No'],
+    'OnlineBackup': ['Yes'],
+    'DeviceProtection': ['No'],
+    'TechSupport': ['No'],
+    'StreamingTV': ['No'],
+    'StreamingMovies': ['No'],
+    'Contract': ['Month-to-month'],
+    'PaperlessBilling': ['Yes'],
+    'PaymentMethod': ['Electronic check'],
+    'MonthlyCharges': [19.85],
+    'TotalCharges': [30.85]})
+
+# new customers prediction
+new_prediction = best_model.predict(new_customer)
+new_customer_probability = best_model.predict_proba(new_customer)[:,1]
+
+print("new_prediction",new_prediction)
+print("new_customer_probability",new_customer_probability)
+
+
+# Try two customers with noticeably different profiles.
+new_customer1 = pd.DataFrame({'gender': ['Female'],
+    'SeniorCitizen': [0],
+    'Partner': ['Yes'],
+    'Dependents': ['No'],
+    'tenure': [50],
+    'PhoneService': ['No'],
+    'MultipleLines': ['No phone service'],
+    'InternetService': ['Fiber optic'],
+    'OnlineSecurity': ['No'],
+    'OnlineBackup': ['Yes'],
+    'DeviceProtection': ['No'],
+    'TechSupport': ['No'],
+    'StreamingTV': ['No'],
+    'StreamingMovies': ['No'],
+    'Contract': ['Two year'],
+    'PaperlessBilling': ['Yes'],
+    'PaymentMethod': ['Mailed check'],
+    'MonthlyCharges': [39.85],
+    'TotalCharges': [40.65]})
+
+new_prediction1 = best_model.predict(new_customer1)
+new_customer_probability1 = best_model.predict_proba(new_customer1)[:,1]
+
+print("new_prediction",new_prediction) #  ['Yes']
+print("new_prediction1",new_prediction1) # ['No']
+print("new_customer_probability",new_customer_probability) # [0.78694972]
+print("new_customer_probability1",new_customer_probability1) #  [0.14851528]

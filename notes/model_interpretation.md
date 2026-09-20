@@ -21,7 +21,7 @@ cat**InternetService_Fiber optic 0.636416
 num**TotalCharges 0.402194
 catPaymentMethod_Electronic check 0.307711
 
-ans: the postivie coeffient means as the feature increases the chance of customer churn increases.
+ans: A positive coefficient means that, holding the other model inputs constant, that feature contributes toward a higher predicted churn tendency.
 out of all the features the model looked into, these features have high impact on pushing customers toward leaving.
 
 2. Pick 3 features with the most negative coefficients.What does that suggest?
@@ -29,7 +29,8 @@ out of all the features the model looked into, these features have high impact o
    num**tenure -1.151536
    cat\_\_Contract_Two year -1.152299
 
-means these features have less impact on making customer churn, so the tenure and contract type is not the areas needs the attension for now.
+tenure has a relatively large negative coefficient, meaning higher tenure contributes toward lower predicted churn probability, all else equal.
+so the tenure and contract type is not the areas needs the attension for now.
 
 3. If a feature has: coefficient = +1.5 and another has: coefficient = -1.5
 
@@ -51,6 +52,11 @@ no positive coefficient is the weight assigned of their influence on output pred
 Think about encoding, scaling, model type, and context.
 No because scaling- numerical values might have a different scale range,
 encoding for reference
+
+correct ans
+But because your numerical features are standardized, comparing coefficient magnitudes among those standardized numeric features is more meaningful than it would be on completely different raw scales.
+
+However, categorical one-hot coefficients and numeric coefficients still require context, and coefficients describe the model's linear relationship, not universal real-world feature importance.
 
 # Top positive coefficients
 
