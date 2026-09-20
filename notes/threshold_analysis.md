@@ -8,7 +8,7 @@
    recall increases which means out of all the positive values the model was able to predict most of the positive values. Beacuse since the threshold decreases the check or mark for positive values increases which makes model to classify the data point into the positive value
 
 2. What happens to precision? Why?
-   precision decreases which means the false positive values increases and it leads to more false alarms as most of the values falls under the positive class
+   When the threshold is lowered, more customers are classified as positive. This increases the number of true positives, but it can also increase false positives, which can reduce precision.
 
 3. Which threshold gives the highest F1?
    .50
