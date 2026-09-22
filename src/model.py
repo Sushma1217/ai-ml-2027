@@ -4,13 +4,11 @@ from src.data_preparation import prepare_data,load_data
 from src.preprocessing import preprocessor
 
 
-
-# Unpack all four returned values directly into four variables
-df = load_data()
-X_train, X_test, y_train, y_test = prepare_data(df)
-processor = preprocessor()
-
 def pipeline_building():
+    # Unpack all four returned values directly into four variables
+    df = load_data()
+    X_train, X_test, y_train, y_test = prepare_data(df)
+    processor = preprocessor()
     model = LogisticRegression(C=0.1, max_iter=1000, class_weight="balanced") 
     #c value we got it from grid serach - refer hyperparameters
     # Part 3 — Put preprocessing + model together ⭐

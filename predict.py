@@ -24,9 +24,9 @@ new_customer = pd.DataFrame({'gender': ['Female'],
 
 model_pipleline =joblib.load("churn_pipeline.joblib") #we should not use prepare_model because re training the model again every time you run predict.py
 
-# predict()
+# # predict()
 model_pipleline.predict(new_customer)
-print("prediction for new customer",model_pipleline.predict(new_customer))
+# print("prediction for new customer",model_pipleline.predict(new_customer))
 
 # predict_proba()
 model_pipleline.predict_proba(new_customer)[:1]
