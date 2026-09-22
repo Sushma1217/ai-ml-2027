@@ -8,7 +8,7 @@ def pipeline_building():
     # Unpack all four returned values directly into four variables
     df = load_data()
     X_train, X_test, y_train, y_test = prepare_data(df)
-    processor = preprocessor()
+    processor = preprocessor(X_train)
     model = LogisticRegression(C=0.1, max_iter=1000, class_weight="balanced") 
     #c value we got it from grid serach - refer hyperparameters
     # Part 3 — Put preprocessing + model together ⭐
