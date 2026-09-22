@@ -38,7 +38,7 @@ ther performance of the model cannot be decided only by accuracy because its the
 6. Cross-validation
 
 Why did we use it?
-cross validation let us to evaluate the model performacne with different split eg: 50:50, 80:20, 60:40 giving us a more reliable view of its performance.
+5-fold cross-validation divides the training data into five folds and repeatedly uses four folds for training and one fold for validation, rotating the validation fold.
 
 . Hyperparameter tuning
 
@@ -73,8 +73,11 @@ Explain the project in 5–8 sentences as if an interviewer asked:
 
 "Tell me about your ML project."
 
-My project is about predicting the churn customers from telecom data set. I used the logistic regression algorithm for the prediction as its best suited for classification problems even I compared with other models too.
+My project is about predicting the churn customers from telecom data set. We used Logistic Regression as a baseline classification model and compared it with Decision Tree and Random Forest. Based on our chosen evaluation metrics and this dataset, Logistic Regression performed competitively and was selected for the current implementation.
 started with loading data, preprocessing which includes identifying missing data, removing irrelevant columns, dividing the data into features and target, spliting into train and test data.
 then we used a pipeline to create a model as its acts a bundle pacakge for preproessing model building and predicted the values.
 we performed model evaluation by interpreting its accuracy, precision, recall, f1 etc metrics and cross validating it against a 5 folds, with hyperparamer turing we identified the best vlaue of C and checked model prediction against different threhold values too.
-the libraries which we used are pandas, numpy, scikit learn
+the libraries which we used are pandas, numpy, scikit learn.
+
+better answer
+I used Logistic Regression as the initial classification model, then compared it with Decision Tree and Random Forest. Because churn data is imbalanced, I evaluated precision, recall and F1 rather than relying only on accuracy. I also used cross-validation and hyperparameter tuning to assess and improve the model, and explored probability thresholds based on the business cost of missing potential churners.

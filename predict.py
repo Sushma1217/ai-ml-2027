@@ -1,5 +1,5 @@
-from model import pipeline_building
 import pandas as pd
+import joblib
 
 # create new customer
 new_customer = pd.DataFrame({'gender': ['Female'],
@@ -22,7 +22,7 @@ new_customer = pd.DataFrame({'gender': ['Female'],
     'MonthlyCharges': [19.85],
     'TotalCharges': [30.85]})
 
-model_pipleline =pipeline_building()
+model_pipleline =joblib.load("churn_pipeline.joblib") #we should not use prepare_model because re training the model again every time you run predict.py
 
 # predict()
 model_pipleline.predict(new_customer)
