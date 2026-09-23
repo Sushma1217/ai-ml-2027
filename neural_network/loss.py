@@ -1,6 +1,6 @@
 import math
 
-def binary_class_entropy(actual, prediction ):
+def binary_cross_entropy(actual, prediction ):
     # Prevent log(0) errors if prediction is exactly 0 or 1
     epsilon = 1e-15
     prediction = max(epsilon, min(1 - epsilon, prediction))
@@ -10,9 +10,9 @@ def binary_class_entropy(actual, prediction ):
     return loss
 
 
-print("binary_class_entropy for 1,.9",binary_class_entropy(1,.9))
-print("binary_class_entropy for 1,.2",binary_class_entropy(1,.2))
+print("binary_cross_entropy for 1,.9",binary_cross_entropy(1,.9))
+print("binary_cross_entropy for 1,.2",binary_cross_entropy(1,.2))
 
 # Try the opposite case
-print("binary_class_entropy for 0,.1",binary_class_entropy(0,.1))
-print("binary_class_entropy for 0,.8",binary_class_entropy(0,.8))
+print("binary_cross_entropy for 0,.1",binary_cross_entropy(0,.1))
+print("binary_cross_entropy for 0,.8",binary_cross_entropy(0,.8))
