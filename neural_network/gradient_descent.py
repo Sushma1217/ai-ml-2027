@@ -5,7 +5,7 @@ weight = 0.5
 target = 1.0
 
 #  Our goal is simply: Move weight from 0.5 toward 1.0. -->
-loss = (weight * target)**2 # its square. "How far is my current weight from the target?"
+loss = (weight - target)**2 # its square. "How far is my current weight from the target?"
 
 # <!-- Calculate the loss -->
 print("loss",loss) 
@@ -27,7 +27,7 @@ print("loss",loss) #.25
 # Repeat the update- Now put the calculation inside a loop.
 for i in range(20):
     # 1. Calculate loss (how far off we are from the target)
-    loss = (weight * target)**2
+    loss = (weight - target)**2
     # 2. Calculate gradient (direction and rate of change)
     gradient = 2*(weight -target)
     # 3. Update weight (move in opposite direction of gradient)

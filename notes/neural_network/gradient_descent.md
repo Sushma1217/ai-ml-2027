@@ -10,10 +10,12 @@ it tell us how to adjust the weight to make the loss smaller
    it is the hyperparameter that controls the stepsize of model that takes along the loss gradient to update its weight during optimization.
 
 4. What happens if the learning rate is too small?
-   model takes small steps
+   model takes tiny steps, learning is very slow
 
 5. What might happen if the learning rate is too large?
-   steps are big
+   very large steps
+   → may overshoot the minimum
+   → loss can bounce around or even diverge
 
 6. What did you observe about the loss after each iteration?
    loss is value is increasing with each iternation
