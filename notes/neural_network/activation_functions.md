@@ -7,6 +7,8 @@ Sigmoid is useful when we want an output that behaves like a probability for bin
 transforms the value(z value) between 0 to 1
 we already saw this in your Logistic Regression project.
 
+Don't say it is a probability. Say it produces a value between 0 and 1 that can be interpreted as a probability-like output for binary classification, depending on the model/calibration.
+
 Activation functions introduce nonlinearity into neural networks. Without nonlinear activations, stacking multiple linear layers would still result in a linear function, limiting what the network can learn.
 
 Sigmoid- Binary classification output
