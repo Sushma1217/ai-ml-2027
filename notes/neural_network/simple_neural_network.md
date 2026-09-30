@@ -80,7 +80,7 @@ Q1. What is a forward pass?
 it is the process where the data passes through input data flows through a neural network of input layer to output to generate a prediction.
 
 Q2. What happens during backpropagation?
-the weights or gradients calcualted by comparing with loss(flow directs to the backforward) and those graients are used by gradient decent to update the weights to minimal the loss.
+Backpropagation calculates the gradients of the loss with respect to the network's weights and biases by propagating the error backward through the network. Gradient descent then uses those gradients to update the weights and biases to reduce the loss.
 
 What does gradient descent do?
 gradient descent uses the gradients to update the weights to minimal the loss
@@ -90,7 +90,7 @@ one complete pass through of training data
 
 What is the difference between a parameter and a hyperparameter?
 params- weights or bias that nueral network learns
-hyperparams are the addition configuration or setting that we provide for examl max iteration=1000, handle_unknown or c vlaue etc to control the model performance
+hyperparams are the addition configuration or setting that we provide for learning rate, number of epochs, and number of hidden neurons etc to control the model performance
 
 Why are we using ReLU in the hidden layer and sigmoid in the output layer?
 relu is a considerably a better for learning non-linearnity and computationally efficient and sigmod is the simple one and can be the probability between 0-1 which is useful for making prediction
