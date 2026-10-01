@@ -52,7 +52,7 @@ print(z2) #------------final
 
 # Apply activation to both neurons
 def relu(x):
-    max(0,z)
+  return np.maximum(0, z)
 a= relu(z2)
 print(a)
 

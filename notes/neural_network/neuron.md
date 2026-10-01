@@ -12,6 +12,8 @@ its the data value fed into neural network
 . What are weights?
 are the params that determines the influence of the features on output prediction
 
+z represent the weighted sum
+
 what is bias
 Bias is basically an additional value that lets the neuron shift its output.
 "Even if the inputs are small, I want the neuron to have some baseline adjustment."
