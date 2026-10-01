@@ -35,11 +35,6 @@ weights_hidden = np.array([
 
 bias_hidden = np.array([0.1, 0.2])
 
-weights_hidden = np.array([
-    [0.5, 0.4],
-    [0.2, 0.7]
-])
-
 print(weights_hidden.shape) #(2, 2)
 print(bias_hidden.shape) #(2,)
 

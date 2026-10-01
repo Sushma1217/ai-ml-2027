@@ -5,13 +5,13 @@ weight = 0.5
 target = 1.0
 
 #  Our goal is simply: Move weight from 0.5 toward 1.0. -->
-loss = (weight - target)**2 # its square. "How far is my current weight from the target?"
+loss = (weight - target)**2 # it is square. "How far is my current weight from the target?"
 
 # <!-- Calculate the loss -->
 print("loss",loss) 
-# Is the loss large or small? -  no its small .25 for weight 0.5
-# Is the loss large or small? - yes its comparitively large .0.04 for weight 0.8
-# Is the loss large or small? - yes its  large  0.0025 for weight .95
+# Is the loss large or small? -  no its large .25 for weight 0.5
+# Is the loss large or small? - yes its comparitively small .0.04 for weight 0.8
+# Is the loss large or small? - yes its  small  0.0025 for weight .95
 
 #  Now introduce the "gradient"
 gradient = 2*(weight -target) #no need that from where the 2 came
