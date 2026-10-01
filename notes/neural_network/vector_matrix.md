@@ -123,3 +123,6 @@ Dot product = multiply corresponding values and add
 Shape = tells us dimensions
 
 Matrix multiplication = allows many neuron calculations together
+
+in short
+"weights contains the weights of my neurons, x contains my inputs, dot product calculates the weighted sums, and bias is added before applying the activation."
