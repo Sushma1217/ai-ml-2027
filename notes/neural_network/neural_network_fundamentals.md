@@ -45,17 +45,18 @@ Q4. Why do we need activation functions?
 activation function takes weighted sum(z) and transform it before passing the result forward. without this a model will stack to linearity, limiting its learning network. activation function introduces the non linearility
 
 Q5. What does loss tell us
-it tells us how long the model prediction compared to actual.
+it tells us how wrong the model prediction compared to actual.
 
 Q6. What does backpropagation do?
 it is the process in which we aim to minimize the loss by adjusting weights using the calculated gradients by moving in a backward way.
+Backpropagation calculates gradients; it doesn't itself adjust the weights. Gradient descent performs the update.
 
 Q7. What does gradient descent do?
 it uses the gradients calcuated using backpropogation and updates the weights to minimize the loss.
 
 Q8. What is an epoch?
 it is one complete passthough of a every single example in training dataset.
-epochs = 1000. in 1 epoch model process all 1000 records.
+for ex: epochs = 1000. in 1 epoch model process all 1000 records.
 
 Q9. What happens if learning rate is too small?
 model takes small steps to reach the minimum, weights are updated with tiny value.
@@ -63,7 +64,7 @@ model takes small steps to reach the minimum, weights are updated with tiny valu
 "Reaching the minimum" means finding the exact point where the loss is as low as it can possibly get.
 
 Q10. What happens if learning rate is larger?
-model takes big steps to reach the minimum, weights are updated with big or large value.
+model takes a larger learning rate takes larger update steps.
 Note:A larger learning rate isn't automatically better. If it is too large, training can overshoot or become unstable.
 
 | Concept          | What it does                                            |
