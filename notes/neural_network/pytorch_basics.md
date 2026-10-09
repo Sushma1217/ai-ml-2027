@@ -49,3 +49,11 @@ Tells PyTorch to track operations needed to calculate gradients for that tensor.
 Calculates gradients by propagating backward from the loss.
 .grad
 Contains the calculated gradient for a tensor being tracked.
+
+Before:
+Forward pass → Loss → manually calculate gradients → update weights
+
+PyTorch:
+Forward pass → Loss → loss.backward() → gradients
+↓
+optimizer updates weights

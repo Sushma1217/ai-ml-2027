@@ -60,5 +60,5 @@ print("Gradient:", w.grad)
 # loss.backward() is not gradient descent.
 # It performs the backward pass and calculates gradients.
 
-gradient = 2 * (0.5 - 1) 
+gradient = 2 * (0.2 - 1) 
 print(gradient) #-1.0
