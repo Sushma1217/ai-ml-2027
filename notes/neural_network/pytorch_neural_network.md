@@ -21,6 +21,7 @@ Instead of manually keeping track of weights and biases, PyTorch can manage them
 
 nn.Linear(in_features,out_features,bias=True)
 applies an linear trasnformation to the incoming data
+It takes your inputs, multiplies them by internal weights, adds a bias, and produces outputs
 
 ## 3. Forward Pass
 
@@ -45,6 +46,7 @@ pytorch stores the gradients, so we use zero_grand() to clear the previous ones 
 ## 8. loss.backward()
 
 a method of pytorch used for backpropogation.
+calculates the gradients
 
 ## 9. optimizer.step()
 

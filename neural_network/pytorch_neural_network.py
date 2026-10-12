@@ -75,8 +75,8 @@ for epoch in range(1000):
     predictions = model(X)
     loss = loss_function(predictions,y)
     optimizer.zero_grad() #PyTorch stores gradients, so we clear the previous ones before calculating new ones.
-    loss.backward()
-    optimizer.step() #PyTorch calculates gradients automatically.
+    loss.backward() #calculates the gradients
+    optimizer.step() #updates the weights.
 
     if epoch % 100 ==0:
         print( f"Epoch {epoch}, Loss: {loss.item():.4f}")
