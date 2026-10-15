@@ -28,7 +28,7 @@ load_state_dict()- will take the learned params from the file and load them when
 
 Difference between model.eval() and torch.no_grad().
 model.eval() - evaluate the model
-torch.no_grad() - will take care that previously calculated gradients will not be stored or cleared for saving unnecessary computation and memory
+torch.no_grad() - It prevents gradient tracking for operations inside the block for saving unnecessary computation and memory; it does not clear previously stored gradients
 
 Training versus inference
 Training - learning phase. the model processed the data, calculate errors, and update its weights and biases via backpropogation

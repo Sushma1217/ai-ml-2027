@@ -56,8 +56,8 @@ for epoch in range(1000):
         print(f"Epoch {epoch}, Loss: {loss.item():.4f}")
 
 # 4. Save the trained parameters
-torch.save(model.state_dict(),"and_model.pth")
-print("model.state_dict()",model.state_dict())
+torch.save(model.state_dict(), "and_model.pth")
+print("model.state_dict()", model.state_dict())
 print("Model saved")
 
 # 5. Create a fresh model and load saved parameters

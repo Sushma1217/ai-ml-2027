@@ -61,4 +61,4 @@ print("Gradient:", w.grad)
 # It performs the backward pass and calculates gradients.
 
 gradient = 2 * (0.2 - 1) 
-print(gradient) #-1.0
+print(gradient) #-1.6
