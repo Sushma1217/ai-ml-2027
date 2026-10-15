@@ -1,8 +1,6 @@
 import pandas as pd
 from  sklearn.model_selection  import train_test_split
 from src.preprocessing import preprocessor
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
 import torch 
 import torch.nn as nn
 from sklearn.metrics import (
@@ -63,8 +61,9 @@ class ChurnNetwork(nn.Module):
    nn.Linear(input_size,32),
    nn.ReLU(),
    nn.Linear(32,16),# 32 Input feature, 16 output
-   nn.Linear(16,1),
-   nn.ReLU()
+   nn.ReLU(),
+   nn.Linear(16,1)
+ 
   )
  def forward(self, x):
         return self.network(x)
@@ -107,20 +106,22 @@ print("Churn recall:", recall_score(actual, predictions))
 print("Churn F1:", f1_score(actual, predictions))
 
 
-# precision    recall  f1-score   support
+# [[1031    2]
+#  [ 366    8]]
+#               precision    recall  f1-score   support
 
-#            0       0.00      0.00      0.00      1033
-#            1       0.27      1.00      0.42       374
+#            0       0.74      1.00      0.85      1033
+#            1       0.81      0.06      0.04       374
 
-#     accuracy                           0.27      1407
-#    macro avg       0.13      0.50      0.21      1407
-# weighted avg       0.07      0.27      0.11      1407
+#     accuracy                           0.74      1407
+#    macro avg       0.77      0.51      0.45      1407
+# weighted avg       0.75      0.74      0.63      1407
 
-# Churn recall: 1.0
-# Churn F1: 0.41998877035373383
+# Churn recall: 0.0213903743315508
+# Churn F1: 0.041666666666666664
 
 # Save the trained model
 torch.save(model.state_dict(),"churn_model.pth")
 
 # Also save the fitted preprocessing pipeline using joblib
-joblib.dump(preprocessor,"churn_preprocessore.joblib")
+joblib.dump(processor,"churn_preprocessore.joblib")

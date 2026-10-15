@@ -25,9 +25,12 @@ What happened to the training loss?
 training loss decreases slowly
 
 What were churn recall and F1?
-recall is about how many correct positive prediction made by model out of all the positive prediction, represents True negative. its value is 1.00 for class 1
+recall is about out of all positive prediction how many does the model was able to identify, represents True negative. its value is 0.13 for class 1
 
-f1 represent the combined value of precision and recall- 0.42 for class 1
+Precision: Of the customers predicted to churn, how many actually churned?
+Recall: Of all customers who actually churned, how many did the model identify?
+
+f1 represent the combined value of precision and recall- 0.22 for class 1
 
 How does the neural network compare with your earlier Logistic Regression model?
 logistic - single layer maps input directly to the output.
@@ -35,3 +38,27 @@ nn- has hidder layer which makes more powerful for complex data
 
 Why do we save both the preprocessing pipeline and the model?
 the model expect the feature in the same encoded or scaling format it was trained on so saving model only is not enough to reproduce the predictions from raw data
+
+# COMPARISON
+
+| Metric    | Logistic Regression | PyTorch Neural Network |
+| --------- | ------------------: | ---------------------: |
+| Accuracy  |                  78 |                     74 |
+| Precision |                0.62 |                    .81 |
+| Recall    |                 .51 |                  .0.06 |
+| F1        |                0.50 |                   .041 |
+
+Which model has higher churn recall?
+logistic regression
+
+Which model has higher F1?
+logistic regression
+
+What kinds of mistakes does each model make?
+predictiing true negative values
+
+Why might Logistic Regression perform as well as or better than a neural network on tabular data?
+because it is best suited to predict when the output is of binary classification as it direct maps the input layer with output where as neural network is considerably good for complex data prediction like image processing as it has hidden layers.
+
+Which model would you choose if identifying as many likely churners as possible were the priority, and what trade-off would that create?
+i would choose logistic by considering metrics like recall, precision along with accuracy is more compared to nueral network.
