@@ -11,6 +11,15 @@ from sklearn.metrics import (
 )
 import joblib
 
+
+import random
+import numpy as np
+import torch
+
+random.seed(42)
+np.random.seed(42)
+torch.manual_seed(42)
+
 # Load the CSV with pandas.
 df = pd.read_csv("data/WA_Fn-UseC_-Telco-Customer-Churn.csv")
 
@@ -72,7 +81,17 @@ class ChurnNetwork(nn.Module):
 
 # 5. Train the model
 model = ChurnNetwork(X_train_tensor.shape[1])
-loss_function = nn.BCEWithLogitsLoss()
+# loss_function = nn.BCEWithLogitsLoss()
+positive_count = y_train_tensor.sum()
+negative_count = len(y_train_tensor) - positive_count
+
+pos_weight = negative_count / positive_count
+
+loss_function = nn.BCEWithLogitsLoss(
+    pos_weight=pos_weight
+)
+
+print("Positive class weight:", pos_weight.item())
 optimizer = torch.optim.Adam(model.parameters(),lr=0.001)
 
 # Train for 50 epochs initially:
@@ -96,6 +115,13 @@ model.eval()
 with torch.no_grad():
    logits = model(X_test_tensor)
    probabilities = torch.sigmoid(logits)
+   print("Probability minimum:", probabilities.min().item())
+   print("Probability maximum:", probabilities.max().item())
+   print("Probability mean:", probabilities.mean().item())
+   print(
+      "Predicted churn count:",
+      (probabilities >= 0.5).sum().item()
+   )
    predictions = (probabilities>=.5).int().numpy().ravel()
 
 actual = y_test_tensor.numpy().ravel().astype(int)
@@ -124,4 +150,37 @@ print("Churn F1:", f1_score(actual, predictions))
 torch.save(model.state_dict(),"churn_model.pth")
 
 # Also save the fitted preprocessing pipeline using joblib
-joblib.dump(processor,"churn_preprocessore.joblib")
+joblib.dump(processor,"churn_preprocessor.joblib")
+
+# Load the saved preprocessing pipeline
+loaded_processor = joblib.load("churn_preprocessor.joblib")
+
+# Transform the SAME test data
+loaded_X_test = loaded_processor.transform(X_test)
+loaded_X_test_tensor = torch.tensor(
+    loaded_X_test,
+    dtype=torch.float32
+)
+# Create a fresh model with the same architecture
+loaded_model = ChurnNetwork(loaded_X_test_tensor.shape[1])
+
+# Load saved weights
+loaded_model.load_state_dict(
+    torch.load("churn_model.pth", weights_only=True)
+)
+loaded_model.eval()
+
+# Compare original and loaded predictions
+model.eval()
+
+with torch.no_grad():
+    original_probs = torch.sigmoid(model(X_test_tensor))
+    loaded_probs = torch.sigmoid(
+        loaded_model(loaded_X_test_tensor)
+    )
+
+print(
+    "Predictions match:",
+    torch.allclose(original_probs, loaded_probs, atol=1e-6)
+)
+# Predictions match: True

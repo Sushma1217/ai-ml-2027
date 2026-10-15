@@ -25,7 +25,7 @@ What happened to the training loss?
 training loss decreases slowly
 
 What were churn recall and F1?
-recall is about out of all positive prediction how many does the model was able to identify, represents True negative. its value is 0.13 for class 1
+recall is about out of all positive prediction how many does the model was able to identify. its value is 0.02 for class 1
 
 Precision: Of the customers predicted to churn, how many actually churned?
 Recall: Of all customers who actually churned, how many did the model identify?
@@ -45,7 +45,7 @@ the model expect the feature in the same encoded or scaling format it was traine
 | --------- | ------------------: | ---------------------: |
 | Accuracy  |                  78 |                     74 |
 | Precision |                0.62 |                    .81 |
-| Recall    |                 .51 |                  .0.06 |
+| Recall    |                 .51 |                  .0.02 |
 | F1        |                0.50 |                   .041 |
 
 Which model has higher churn recall?
@@ -62,3 +62,91 @@ because it is best suited to predict when the output is of binary classification
 
 Which model would you choose if identifying as many likely churners as possible were the priority, and what trade-off would that create?
 i would choose logistic by considering metrics like recall, precision along with accuracy is more compared to nueral network.
+
+## PyTorch Churn Model — Final Experiment Notes
+
+### 1. Objective
+
+Built a neural network using PyTorch to predict customer churn from the Telco Customer Churn dataset. The objective was to apply neural-network concepts to a real dataset and compare the results with Logistic Regression.
+
+### 2. Model Architecture
+
+- Input layer: number of features after preprocessing
+- Hidden layer 1: 32 neurons with ReLU
+- Hidden layer 2: 16 neurons with ReLU
+- Output layer: 1 neuron producing a raw score (logit)
+- Loss function: `BCEWithLogitsLoss`
+- Optimizer: Adam
+- Training epochs: 50
+
+### 3. Data Preprocessing
+
+- Removed `customerID`, as it is an identifier.
+- Converted `TotalCharges` to numeric and handled missing values.
+- Encoded categorical features using `OneHotEncoder`.
+- Scaled numerical features using `StandardScaler`.
+- Used a stratified 80/20 train-test split.
+- Fitted preprocessing on training data only to avoid data leakage.
+- Converted processed features and target labels into PyTorch tensors.
+
+### 4. Class Imbalance
+
+The dataset contains more non-churners than churners. Initially, the model predicted almost every customer as a non-churner, resulting in very low churn recall.
+
+To address this, I used a positive-class weight:
+
+`pos_weight = negative_count / positive_count`
+
+This makes mistakes on the minority churn class more costly during training.
+
+### 5. Final Class-Weighted Model Results
+
+Confusion matrix:
+
+|                 | Predicted No Churn | Predicted Churn |
+| --------------- | -----------------: | --------------: |
+| Actual No Churn |                696 |             337 |
+| Actual Churn    |                 71 |             303 |
+
+| Metric    | Non-churn (0) | Churn (1) |
+| --------- | ------------: | --------: |
+| Precision |          0.91 |      0.47 |
+| Recall    |          0.67 |      0.81 |
+| F1-score  |          0.77 |      0.60 |
+
+Overall accuracy: **71%**
+
+### 6. Interpretation
+
+- Churn recall of 0.81 means the model identified approximately 81% of actual churners.
+- Churn precision of 0.47 means approximately 47% of customers predicted to churn actually churned.
+- The model identified 303 of 374 actual churners and missed 71.
+- It incorrectly flagged 337 non-churners as potential churners.
+- Class weighting improved churn detection but increased false positives and slightly reduced overall accuracy.
+
+### 7. Learning: Why Accuracy Is Not Enough
+
+Accuracy can be misleading when classes are imbalanced. A model can achieve apparently reasonable accuracy by mostly predicting the majority class while failing to identify churners.
+
+For this problem, churn recall and F1-score provide additional information about the model's ability to identify customers at risk of leaving.
+
+### 8. Logistic Regression vs. Neural Network
+
+Logistic Regression is a useful baseline for this dataset. The neural network's performance must be compared against Logistic Regression using the same test split and corresponding metrics.
+
+A more complex model is not automatically better. Model selection should depend on the business objective and the trade-off between missed churners and false alarms.
+
+### 9. Model Saving and Reproducibility
+
+- Saved the trained model parameters using `torch.save(model.state_dict(), ...)`.
+- Saved the fitted preprocessing pipeline using `joblib`.
+- Used random seeds to make experiments more reproducible.
+- Verified that a freshly loaded model produces matching predictions on the same test inputs.
+
+### 10. Conclusion
+
+This project applied PyTorch to a real classification problem and covered preprocessing, tensor conversion, neural-network training, binary cross-entropy, class weighting, evaluation metrics, and model persistence.
+
+The class-weighted model achieved 81% churn recall and 0.60 churn F1-score in the recorded experiment. These results are specific to the current test split and training setup; they do not establish that the neural network is better than Logistic Regression without a fair comparison.
+
+**Status: Core PyTorch churn experiment completed. Further tuning is deferred.**
