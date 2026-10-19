@@ -132,19 +132,16 @@ print("Churn recall:", recall_score(actual, predictions))
 print("Churn F1:", f1_score(actual, predictions))
 
 
-# [[1031    2]
-#  [ 366    8]]
+# [[696 337]
+#  [ 71 303]]
 #               precision    recall  f1-score   support
 
-#            0       0.74      1.00      0.85      1033
-#            1       0.81      0.06      0.04       374
+#            0       0.91      0.67      0.77      1033
+#            1       0.47      0.81      0.60       374
 
-#     accuracy                           0.74      1407
-#    macro avg       0.77      0.51      0.45      1407
-# weighted avg       0.75      0.74      0.63      1407
-
-# Churn recall: 0.0213903743315508
-# Churn F1: 0.041666666666666664
+#     accuracy                           0.71      1407
+#    macro avg       0.69      0.74      0.69      1407
+# weighted avg       0.79      0.71      0.73      1407
 
 # Save the trained model
 torch.save(model.state_dict(),"churn_model.pth")

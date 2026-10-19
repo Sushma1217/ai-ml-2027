@@ -44,9 +44,9 @@ the model expect the feature in the same encoded or scaling format it was traine
 | Metric    | Logistic Regression | PyTorch Neural Network |
 | --------- | ------------------: | ---------------------: |
 | Accuracy  |                  78 |                     74 |
-| Precision |                0.62 |                    .81 |
-| Recall    |                 .51 |                  .0.02 |
-| F1        |                0.50 |                   .041 |
+| Precision |                0.62 |                    .47 |
+| Recall    |                 .51 |                    .81 |
+| F1        |                0.50 |                    .60 |
 
 Which model has higher churn recall?
 logistic regression
