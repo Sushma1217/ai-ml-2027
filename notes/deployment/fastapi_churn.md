@@ -63,7 +63,7 @@ HTTP 200 means the request succeeded. It does not mean the model is 100% accurat
 ## 5. Interview questions
 
 1. Why do we use FastAPI?
-   We use FastAPI because it is a high-performance, modern Python web framework specifically optimized for building fast, reliable REST APIs and backend microservices
+   FastAPI exposes our trained model through HTTP endpoints so other applications can send input data and receive predictions.
 
 2. Why load a saved model instead of training on every request?
    its a redudant and time cosuming and in real time the data will be in million so we cant train on every request. so we load a trained, saved model which are trained using same params or hyperparams that can be used to predict new or unseen data
@@ -81,7 +81,7 @@ HTTP 200 means the request succeeded. It does not mean the model is 100% accurat
    probability - score will be 0 to 1 so we use activation function to convert logit into probability score for prediction.
 
 6. Why use `model.eval()` and `torch.no_grad()`?
-   model.eval() - for evaluating the model
+   model.eval() - switches the model to evaluation mode.
    torch.no_grad() - disables gradient calculation because we are predicting, not training.
 
 7. What does HTTP 200 indicate?
