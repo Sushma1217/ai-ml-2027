@@ -114,7 +114,7 @@ Interview questions
 # QUESTIONS
 
 1. Why does the model need labels during training?
-   model contains the correct category of the each image, so in a learning without labels there is no way to evaluate the prediction. The label tells the loss function exactly how far off the prediction was.
+   Labels give the model the correct category so we can calculate how wrong its predictions are. Your current answer says the model contains the correct category; more precisely, the dataset supplies the labels.
 
 2. Why do we calculate loss before calling backward()?
    because loss will tell us how wrong the model prediction is and backward() uses that value as starting loss to calcualte the gradients to update the weights to minmal the loss
@@ -127,7 +127,7 @@ Interview questions
    torch.no_grad - disable the gradient calcualtion
 
 5. Why do we evaluate on test images that the model did not train on?
-   then only we can evaluate the model performance on unseen or new customers and to avoid data leakage.
+   To estimate how well the model generalizes to new images, rather than merely remembering training examples. Data leakage is a separate problem that we also need to avoid.
 
 training loop
 NN processes the images and produces ten scores per image.
