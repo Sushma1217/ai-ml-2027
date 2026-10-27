@@ -2,10 +2,6 @@ import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
 
-import torch
-import torch.nn as nn
-from torchvision import datasets, transforms
-
 class FashionCNN(nn.Module):
     def __init__(self):
         super().__init__()
