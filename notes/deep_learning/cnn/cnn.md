@@ -8,7 +8,7 @@ CNN classifier CNN features followed by classification layers Predicts the image
 
 What is a pixel? What does the shape (5, 5) mean?
 a pixel is a numerical value representing the image brighntess or color.
-shape (5, 5)- represent the kerner or filter size - which means a small grid of numbers applied on image to detect the local patterns.
+shape (5, 5)- The image has five rows and five columns. The filter used in the manual convolution exercise is 3×3.
 the first 5- height of the filter(spanning 5 pixels vertically)
 the second 5- width of the filter (spanning 5 pixels horizontally).
 
@@ -26,6 +26,8 @@ It is a PyTorch layer that applies learnable filters to image data. The 2d means
 
 What is pooling?
 Pooling reduces the height and width of a feature map. Max pooling keeps the largest number in each small region, reducing the amount of information the next layers need to process.
+
+pooling reduces the feature map's spatial dimensions; convolution uses learnable filters to extract patterns.
 
 max pooling -
 The top-left 2×2 region is:
@@ -108,3 +110,36 @@ Interview questions
 
 10. What does state_dict() save?
     Returns the model's learned parameters, such as weights and biases. We save these instead of retraining the model each time.
+
+# QUESTIONS
+
+1. Why does the model need labels during training?
+   model contains the correct category of the each image, so in a learning without labels there is no way to evaluate the prediction. The label tells the loss function exactly how far off the prediction was.
+
+2. Why do we calculate loss before calling backward()?
+   because loss will tell us how wrong the model prediction is and backward() uses that value as starting loss to calcualte the gradients to update the weights to minmal the loss
+
+3. What changes when optimizer.step() runs?
+   when optimizer.step() runs the weights and biases are updated to minmal the loss.
+
+4. Why do we use model.eval() and torch.no_grad() during evaluation?
+   model.eval- turns on the model into evaluation mode.
+   torch.no_grad - disable the gradient calcualtion
+
+5. Why do we evaluate on test images that the model did not train on?
+   then only we can evaluate the model performance on unseen or new customers and to avoid data leakage.
+
+training loop
+NN processes the images and produces ten scores per image.
+
+2. Calculate loss
+
+Compare the scores with the correct labels using cross-entropy loss.
+
+3. Backpropagation
+
+loss.backward() calculates how the trainable weights contributed to the error.
+
+4. Update weights
+
+optimizer.step() adjusts the weights using the gradients.

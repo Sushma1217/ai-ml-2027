@@ -97,7 +97,7 @@ class FashionCNN(nn.Module):
              nn.Conv2d(1, 16, kernel_size=3, padding=1),  # kerneral_size =3, uses the kernel to extract features
             nn.ReLU(),
             nn.MaxPool2d(2),  #  2 is also a kerneral size but uses the kernel to extract features
-
+            # Pooling reduces spatial size; convolution learns filters to extract features.
             nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.ReLU(),
             nn.MaxPool2d(2)
@@ -161,11 +161,11 @@ test_loader = DataLoader(
 # Train for one epoch
 model.train()
 total_loss = 0.0
-for images, lables in train_loader:
+for images, labels in train_loader:
     optimizer.zero_grad()
 
     outputs = model(images)
-    loss = loss_function(outputs, lables)
+    loss = loss_function(outputs, labels)
     loss.backward()
     optimizer.step()
 
@@ -191,7 +191,7 @@ total = 0
 with torch.no_grad():
     for images, labels in test_loader:
         outputs = model(images)
-        predictions = outputs.agrmax(dim=1)
+        predictions = outputs.argmax(dim=1)
         correct += (predictions == labels).sum().item()
         total += labels.size(0)
 print(f"Test accuracy: {correct / total:.2%}")
@@ -204,3 +204,9 @@ torch.save(
 # argmax(dim=1) selects the highest-scoring category for each image.
 # Test accuracy tells us the fraction of test images classified correctly
 # The saved state_dict contains the trained parameters; to use it later
+
+
+# Expected results:
+# - An average training loss.  0.53
+# - A test accuracy percentage.  85.49%
+# - A saved model at deep_learning/cnn/fashion_cnn.pth. - yes
