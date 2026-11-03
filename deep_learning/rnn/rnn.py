@@ -13,7 +13,7 @@ for num in sequence:
 import torch
 import torch.nn as nn
 
-rnn = nn.RNN(input_size=1,hidden_size=2,batch_first=True)
+rnn = nn.RNN(input_size=1,hidden_size=4,batch_first=True)
 sequence = torch.tensor(
     [[[10.0], [20.0], [30.0]]]
 )
