@@ -19,6 +19,10 @@ Part 2 — Compare RNN and LSTM (15 minutes)
 |Can struggle with long-term dependencies |Designed to handle longer-term dependencies better|
 |Fewer gates |Uses three gates|
 
+1. Add that LSTM has two states: hidden state (h) and cell state (c).
+2. Add the standard hidden-state shape formula:
+   [num_layers * num_directions, batch_size, hidden_size]
+
 # BATCH SIZE- REFER MY NOTES
 
 Include:

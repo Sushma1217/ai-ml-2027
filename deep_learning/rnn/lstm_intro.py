@@ -5,7 +5,8 @@ import torch.nn as nn
 # Sequence length = 3
 # Features per time step = 1
 # Last 1 (Features per time step): How many numbers represent each individual step. At step 1, you only have a single value (10.0), so the feature size is 1.
-sequence = torch.tensor([[10.0],[20.0],[30.0]])
+# sequence = torch.tensor([[10.0],[20.0],[30.0]])
+sequence = torch.tensor([[[10.0], [20.0], [30.0]]])
 print("Input shape:", sequence.shape)
 
 # Part B — Create the LSTM
