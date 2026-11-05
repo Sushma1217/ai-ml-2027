@@ -18,8 +18,8 @@ sequences = sequences.unsqueeze(-1)
 X_train = sequences[:400]
 y_train = targets[:400]
 
-X_test = sequences[:400]
-y_test = targets[:400]
+X_test = sequences[400:]
+y_test = targets[400:]
 
 
 print("Training input:", X_train.shape) #[:400] selects the first 400 examples.

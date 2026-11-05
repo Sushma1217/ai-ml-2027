@@ -11,7 +11,7 @@ What MAE means, with a simple example.
 Mean absolute error, it measures the avg absolute difference between the prediction and actual values.
 
 Training loss and test loss from your run.
-Test loss = 1.999
+Test loss = 0.0017
 Training loss
 Epoch 20,loss 0.003100
 Epoch 40,loss 0.000408
@@ -19,14 +19,14 @@ Epoch 60,loss 0.000150
 Epoch 80,loss 0.000024
 Epoch 100,loss 0.000020
 
-Test MAE in original units- 1.7018
+Test MAE in original units- 19.43
 
 Five actual-versus-predicted examples.
-Actual: 3.00, Predicted: 7.78
-Actual: 4.00, Predicted: 8.65
-Actual: 5.00, Predicted: 9.52
-Actual: 6.00, Predicted: 10.40
-Actual: 7.00, Predicted: 11.27
+Actual: 403.00, Predicted: 394.91
+Actual: 404.00, Predicted: 395.73
+Actual: 405.00, Predicted: 396.56
+Actual: 406.00, Predicted: 397.38
+Actual: 407.00, Predicted: 398.20
 
 What you observed about the model's predictions.
 not predicted correctly. the loss is too high
