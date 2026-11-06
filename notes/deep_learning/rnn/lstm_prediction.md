@@ -37,10 +37,43 @@ Save these concepts:
    training with multiple samples by moving through sequenctial data.
 
 10. Why do we use batch_first=True?
-    im not able to answer. give me the answer
+    Consider your dataset:
+    X.shape = [980, 20, 1]
+
+This means:
+
+- 980 = Number of sequences (batch size).
+- 20 = Number of time steps in each sequence.
+- 1 = Number of features at each time step.
+  Now, PyTorch supports two input arrangements.
+  Without batch_first=True
+  [sequence_length, batch_size, input_size]
+
+Example:
+[20, 980, 1]
+
+With batch_first=True
+[batch_size, sequence_length, input_size]
+
+Example:
+[980, 20, 1]
+
+Why do we prefer batch_first=True?
+
+Because it allows us to organize input data with batch size as the first dimension, which is often easier to understand and work with.
+
+It does not change how LSTM learns. It only changes the expected layout of the input and output tensors.
+
+Also remember: hidden state and cell state dimensions are not rearranged by batch_first.
+
+Interview-ready answer:
+
+"We use batch_first=True to make the input tensor follow the format [batch_size, sequence_length, input_size] instead of [sequence_length, batch_size, input_size]. It makes data organization easier, especially when working with batches of sequential data."
 
 11. Why do we select outputs[:, -1, :]?
     because the last value contains the accumulated or summarized context of the entire sequence.
+    better ans
+    We select the output at the last time step because it contains the final hidden representation after processing the sequence. We use this representation to predict the next value.
 
 12. Why do we use a Linear layer after LSTM?
     because linear layers converts the LSTM features into final prediction.

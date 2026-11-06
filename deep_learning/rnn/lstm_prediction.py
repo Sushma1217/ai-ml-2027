@@ -2,19 +2,19 @@ import torch
 import torch.nn as nn
 
 # Generate sequential data
-data = torch.sin(torch.arrange(0,100,0.1))
+data = torch.sin(torch.arange(0, 100, 0.1))
 
-#create input sequence and target
+# Create input sequences and targets
 sequence_length = 20
 
-X=[]
-y=[]
+X = []
+y = []
 
-for i in range(len(data)- sequence_length):
-    X.append(data[i:i]+sequence_length)
-    y.append(data[i+sequence_length])
+for i in range(len(data) - sequence_length):
+    X.append(data[i:i + sequence_length])
+    y.append(data[i + sequence_length])
 
-X= torch.stack(X).unsqueeze(-1)
+X = torch.stack(X).unsqueeze(-1)
 y = torch.stack(y).unsqueeze(-1)
 
 print("X shape:", X.shape)
