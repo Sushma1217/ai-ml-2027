@@ -103,13 +103,13 @@ def train_model(model, X_train, y_train):
         lr=0.001)
     for epoch in range(100):
         model.train()
-        predictions = model(X_train)
-        loss = criterion(predictions, y_train)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        if (epoch + 1) % 20 == 0:
-            print(f"Epoch {epoch+1}, Loss: {loss.item():.6f}")
+    optimizer.zero_grad()
+    predictions = model(X_train)
+    loss = criterion(predictions, y_train)
+    loss.backward()
+    optimizer.step()
+    if (epoch + 1) % 20 == 0:
+      print(f"Epoch {epoch+1}, Loss: {loss.item():.6f}")
 
     return model
 
