@@ -10,21 +10,21 @@ For example:
 
 Your output should look like this:
 Sequence length || RNN test MSE || LSTM test MSE
-5 ||0.0486|| 0.0420
-20 || 0.016 ||0.04305
-50 ||0.01437||0.03796
+5 ||0.02722|| 0.0550
+20 || 0.0241 ||0.1060
+50 ||0.0054||0.0663
 
 1. Which sequence length gave the lowest RNN test loss?
    50
 
 2. Which sequence length gave the lowest LSTM test loss?
-   50
+   5
 
 3. Did increasing sequence length always improve performance?
-   yes by considering the loss vlaues increaing sequence lenght gave the improve performance.
+   Increasing sequence length did not consistently improve both models: LSTM's loss increased from length 5 to 20.
 
 4. Which model performed better in your experiment?
-   RNN
+   RNN performed better at lengths 20 and 50.
 
 5. Why might LSTM be more useful when longer-term dependencies matter?
    because of its cell state and gating mechanism which helps to propogate the information directly using cell state for longer term dependencies and its gating mechanishm tries to reduce the vanishing graident problem.
