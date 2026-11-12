@@ -13,10 +13,10 @@ Include:
   breaking the sentence or stream of text into smaller words
 
 - What is vocabulary?
-  generating the unique ids for each tokens
+  the collection or mapping of known tokens.
 
 - What are token IDs?
-  a unique ids that represents the tokens
+  the numerical identifier assigned to a token.
 
 - What is an unknown token (UNK)?
   when the vocabulary encounters the new words, it might break it process so we initialize the new tokens with unk and assign a token ids for it so it can handle the new words.
