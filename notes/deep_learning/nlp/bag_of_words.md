@@ -43,7 +43,8 @@ Include:
    A document-term matrix (DTM) is a grid where rows represent individual documents and columns represent unique words, with each cell storing that word's frequency in a specific document. It essentially translates an entire text corpus into a numerical table that machine learning algorithms can analyze.
 
 5. What is the difference between manual BoW and CountVectorizer?
-
+   Manual BoW: We create the vocabulary and count word occurrences ourselves.
+   CountVectorizer: Scikit-learn automates vocabulary creation and word counting, returning a document-term matrix.
 6. What are the limitations of BoW?
    the limitation of bow is that it ignores the order of the word and its context.
 
@@ -57,6 +58,9 @@ Interview questions
 - What is Bag of Words?
 - What is a document-term matrix?
 - What is the difference between tokenization and BoW?
+  Tokenization: Splitting text into individual tokens.
+  BoW: Converting those tokens into numerical word-count vectors.
+
 - What are the limitations of BoW?
 - Why does CountVectorizer return a sparse matrix?
   CountVectorizer returns a sparse matrix because the resulting document-term grid is mostly filled with zeros.

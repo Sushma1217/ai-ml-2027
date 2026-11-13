@@ -32,7 +32,7 @@ print(bow_vectors)
 from sklearn.feature_extraction.text import CountVectorizer
 
 vectorizer = CountVectorizer()
-X= vectorizer.fit_transform(document)
+X= vectorizer.fit_transform(documents)
 
 print(vectorizer.get_feature_names_out())
 print(X.toarray())
@@ -46,3 +46,13 @@ print(X.toarray())
 # The output should represent the same word counts as your manual implementation, though the vocabulary ordering and default preprocessing may differ.
 
 # Part D — Understand the limitation
+sentences = [
+    "I love this movie",
+    "I do not love this movie"
+]
+
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(sentences)
+
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
