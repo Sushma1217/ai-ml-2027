@@ -33,6 +33,7 @@ Examples:
 studies → study
 better → good
 running → run
+default value of pos is n
 
 1. What are stop words?
    words that are common and carry little information for nlp task. for example a, the, and, of
@@ -63,4 +64,4 @@ Interview questions:
   Text normalization is the foundational preprocessing step that transforms raw, messy text into a clean, uniform format so a machine learning model can actually understand the underlying patterns.
 
 - Does every NLP project need stemming or lemmatization?
-  No. but im not sure about the reason
+  Not every NLP task requires stemming or lemmatization. These techniques can remove useful grammatical information or change the meaning of words. For example, modern transformer models use contextual tokenization and embeddings, so traditional stemming may not be necessary. We choose preprocessing based on the model and task.
