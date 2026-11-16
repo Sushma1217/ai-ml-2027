@@ -34,7 +34,7 @@ Vocabulary: ['deep', 'i', 'interesting', 'is', 'learning', 'love', 'machine']
    tfidf
 
 4. Why might TF-IDF be useful for text classification?
-   it gives more importance to the frequent words along woth considering how uncommon it is across the whole document. so it helps model to identify uncommon words.
+   TF-IDF gives higher importance to words that appear frequently in a particular document but are relatively uncommon across the entire collection. These words can help a classifier distinguish between categories.
 
 - What is TF-IDF?
   a metric that measures how important the word is in the doc
@@ -48,7 +48,7 @@ Vocabulary: ['deep', 'i', 'interesting', 'is', 'learning', 'love', 'machine']
   tfidf- consideres the frequence and how that is uncommon across the document
 
 - Why are common words given lower importance?
-  they carry least or not much meaning in the doc
+  Words appearing in almost every document are less useful for distinguishing one document from another, so IDF reduces their weight.
 
 - Where is TF-IDF used?
   TF-IDF is widely used across search engines, text analytics, and machine learning pipelines whenever systems need to quickly rank, categorize, or extract meaning from large collections of text.
@@ -59,7 +59,7 @@ Vocabulary: ['deep', 'i', 'interesting', 'is', 'learning', 'love', 'machine']
 2. How is it different from Bag of Words?
 3. Why does IDF reduce the importance of common words?
 4. Can TF-IDF understand the meaning of a sentence?
-   No, TF-IDF cannot understand the meaning of a sentence. It only measures word counts and rarity across documents,
+   No.It does not understand context, word order, or semantic relationships. For example, it cannot reliably understand that "good" and "excellent" have similar meanings.
 
 5. Can TF-IDF be used for spam classification?
    yes
