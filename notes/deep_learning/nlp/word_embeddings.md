@@ -50,6 +50,7 @@ Remember this simple distinction:
    For example:
    The king lives in the palace
    If the context window is 2, the model looks at up to two words on either side of a target word.
+   A window size of 2 means the model considers nearby words up to a maximum distance of two positions from the target word.
 
 5. Why does a small dataset produce poor embeddings?
    Imagine learning the meaning of English words after reading only five sentences.
@@ -71,7 +72,7 @@ Remember this simple distinction:
 
 6. What is Gensim?
 7. What does most_similar() do?
-   it finds the top n most similar words in a vector.
+   finds words whose embedding vectors are closest to the given word's vector. It returns the words along with their similarity scores.
 
 8. What is cosine similarity?
    it measures how similar two vectors based on the angle between them.
@@ -135,3 +136,25 @@ No. Traditional Word2Vec learns static word representations. It does not underst
 Q5. What is the limitation of Word2Vec?
 
 A word gets the same vector regardless of its context. For example, the word "bank" in a river context and a financial context receives the same embedding.
+
+#
+
+You have now learned three different ways of representing words.
+Technique What it represents
+BoW Word occurrence counts
+TF-IDF Word importance
+Word2Vec Learned word vectors based on context
+
+There is one limitation of Word2Vec that is especially important for your next topic.
+
+Consider:
+
+- "I deposited money in the bank."
+- "I sat near the river bank."
+  Word2Vec gives the word bank the same vector in both sentences.
+
+Why? Because Word2Vec learns one fixed vector per word, not a different representation for every sentence.
+
+Modern transformer-based models address this limitation using contextual embeddings.
+
+This is the connection between what you've just learned and the next stage of NLP.
