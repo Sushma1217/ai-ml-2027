@@ -45,10 +45,11 @@ Try answering these in your own words:
 
 2. Explain Query, Key and Value with an example.
    Query represents what information a token is looking for. Key represents what information each token offers for matching. Value contains the information that gets combined. The Query is compared with Keys to calculate attention weights, which are then applied to Values.
+
 3. What is self-attention?
    Self-attention is a mechanism where tokens in the same input sequence interact with one another. Each token uses Queries, Keys and Values to calculate how much information to take from other tokens.
 4. What is the role of softmax in attention?
-   RNNs process sequence elements step by step and maintain a hidden state. Transformers use attention to model relationships between tokens and allow parallel processing of input tokens during training.
+   Softmax converts attention scores into normalized weights. These weights indicate how much information a token receives from other tokens, and they are used to combine the Value vectors.
 5. What is the difference between RNN and Transformer?
    RNNs process sequence elements step by step and maintain a hidden state. Transformers use attention to model relationships between tokens and allow parallel processing of input tokens during training.
 6. What is positional encoding?

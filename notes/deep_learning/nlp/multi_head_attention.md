@@ -38,7 +38,7 @@ Positional encoding adds information about where each token occurs in the sequen
    multi-head attenstion runs multiple attenstions in parellel, each head can learn different relationship or pattern bewtween the token.
 
 2. Why do we use multiple heads?
-   because it can learn the relationship between tokesn simultaneously.
+   Multiple heads allow the model to learn different types of relationships between tokens in parallel. Combining their outputs gives the model a richer representation.
 
 3. What is an embedding dimension?
    the number of values used to represent one word.
