@@ -57,8 +57,7 @@ book ✓ ✓ ✓ ✓
    because GPT model usually predicts the next word or token using previous token so casual masking helps in preventing access to the future tokens.
 
 7. What is the difference between an encoder and a decoder?
-   An encoder compresses input data (like a sentence or image) into a rich numerical representation (latent space) capturing its meaning.
-   A decoder takes that representation and reconstructs or generates output step by step, such as a translated sentence or new sequence.
+   An encoder processes the input sequence and produces contextual representations using self-attention. A decoder generates output tokens. In the original Transformer, the decoder also attends to encoder outputs. GPT is decoder-only and uses causal self-attention to predict the next token.
 
 8. Why does the output shape remain [1, 4, 8]?
    this is because the transformer change the representation not their embedding dimension or number of tokens thats why output shape as input shape.
