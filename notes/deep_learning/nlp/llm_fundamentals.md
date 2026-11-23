@@ -27,3 +27,29 @@ Important interview point: Context window is not the same as memory. A model's c
 What is the difference between context window and memory?
 context window is about what amoutn of information it can consider or process while processing. not rembering
 memory - model remembers everything from previous conversations
+
+# interview
+
+1. Why do we convert text into token IDs instead of directly passing text to an LLM?
+
+   Neural networks operate on numerical representations. A tokenizer converts text into token IDs, which are mapped to embeddings that the model can process.
+
+2. Can two different LLMs tokenize the same sentence differently?
+
+   Yes. Different models can use different tokenizers and vocabularies, so the same text can produce different token boundaries and token counts.
+
+3. What happens if a conversation becomes longer than the context window?
+
+   The application must manage the context, for example by removing older messages, summarizing conversation history, or retrieving only relevant information. Otherwise, the request may exceed the model's limit.
+
+4. Why is next-token prediction important for understanding GPT?
+
+   GPT is an autoregressive language model. It predicts the next token based on previously available tokens and repeats this process to generate a response.
+
+5. What is the difference between tokenization and embedding?
+
+   Tokenization breaks text into tokens and maps them to IDs. Embedding converts those IDs into numerical vectors that represent tokens in a learned vector space.
+
+6. Does a larger context window mean an LLM is always more intelligent?
+
+   No. A larger context window allows more information to be processed in a request, but it does not automatically make the model more accurate, capable or intelligent.
