@@ -8,6 +8,7 @@
    an authentication code for api to prevent unauthorised usages.
 
 4. Why should API keys be stored in environment variables?
+   To keep sensitive credentials separate from source code and reduce the risk of accidentally exposing them in GitHub or other shared locations.
 
 5. What is the difference between request and response?
    request - the instrcution or ask what we send
@@ -17,6 +18,7 @@
    500- server side
    401- unauthrozed
    400- invalid request
+   429 means the request exceeded the allowed rate limit or quot
 
 7. Why do we create a reusable generate_response() function?
    when we create the reusable function it works for any promots, we dnt need to rewrite for each request which makes code optimized and avoids repetition
