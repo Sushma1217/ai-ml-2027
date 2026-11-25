@@ -23,7 +23,7 @@
    gving the clear instruction about the task, context and expected reponse to the model.
 
 8. Why are reusable prompt templates useful?
-   because it saves time, avoids re work and can be used at anytime.
+   Reusable prompt templates save time, reduce repeated work and maintain consistent instructions and output formats across different requests.
 
 # interview
 
